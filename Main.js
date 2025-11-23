@@ -1,16 +1,14 @@
 import { showScene, mostrarStats } from './Utils/dom.js';
-import { deepClone } from './Utils/helpers.js';
 import { Jugador } from './Modules/Jugador.js';
 import { productos, selected, showCatalog, randomiseDiscount, paintInventory, aplicarDescuentoRareza } from './Modules/Mercado.js';
-import { Producto } from './Modules/Producto.js';
-import { Jefe } from './Modules/Jefe.js';
+
 
 const goToScene2 = document.getElementById('goToScene2');
 const goToScene3 = document.getElementById('goToScene3');
 
 showScene('scene-1');
-const jugador = new Jugador('Gloria', 200);
-mostrarStats(jugador, 1);
+const jugador = new Jugador('Teniente al Mando F. Welsch', './img/astronaut.png');
+mostrarStats(jugador);
 
 goToScene2.addEventListener('click', () => showScene('scene-2'));
 
@@ -26,6 +24,8 @@ goToScene3.addEventListener('click', () => {
     paintInventory(jugador.inventario);
     
 }); 
+
+
 
 
 

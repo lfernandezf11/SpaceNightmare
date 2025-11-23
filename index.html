@@ -1,48 +1,56 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <title>Aventura en el Reino de JS</title>
   <link rel="stylesheet" href="styles.css">
-  <script type="module" src='Main.js' defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Science+Gothic:wght@100..900&display=swap"
+    rel="stylesheet">
+  <script type="module" src='./Main.js' defer></script>
 </head>
 
 <body>
   <header>
-    <h1 id="title">Aventura en el Reino de JS</h1>
+    <h1 id="title">Space Nightmare</h1>
   </header>
 
   <main>
-    <div id="scene-1" class="scene">
-      <div id="scene-1-container">
-        <div class="row-1">
-          <div class="img-container">
-            <img src="./img/player.png" alt="jugador">
-          </div>
-          <h3 id="playerName1"></h3>
-        </div>
-        <div class="row-2">
-          <div class="stats">
-            <p id="ataque1"></p>
-          </div>
-          <div class="stats">
-            <p id="defensa1"></p>
-          </div>
-          <div class="stats">
-            <p id="vida1"></p>
-          </div>
-          <div class="stats">
-            <p id="puntos1"></p>
+    <div id="scene-1" class="scene active">
+      <div class="scene-container">
+        <div id="player-card">
+          <h2>TRIPULANTE AUTORIZADO</h2>
+          <div class="columns">
+            <div id="player-photo">
+              
+            </div>
+            <div id="player-info">
+              <h3 id="player-name"></h3>
+              <div class="stats">
+                <ul>
+                  <li>Ataque: <span  id="attack"></span></li>
+                  <li>Defensa: <span id="defense"></span> </li>
+                  <li>Vida: <span id="life"></span></li>
+                  <li>Puntos: <span id="points"></span></li>
+                </ul>
+              </div>
+              <div class="logos">
+                <img src="./img/nasa.png" alt="Logo de la NASA">
+                <img src="./img/earth.png" alt="Sello de la Tierra">
+              </div>
+            </div>
           </div>
         </div>
         <div class="row-3">
           <button id="goToScene2">Continuar</button>
         </div>
       </div>
-    </div> 
 
     <div id="scene-2" class="scene">
-      <div id="scene-2-container">
+      <div class="scene-container">
         <h2 id="discount"></h2>
         <div class="row-1">
           <div id="card-container">
@@ -55,7 +63,7 @@
       </div>
     </div>
 
-    <div id="scene-3" class="scene">
+    <!-- <div id="scene-3" class="scene">
       <div id="scene-3-container">
         <div class="row-1">
           <div class="img-container">
@@ -81,17 +89,17 @@
           <button id="goToScene4">Continuar</button>
         </div>
       </div>
-    </div> 
+    </div> -->
 
   </main>
 
   <footer>
     <div id="inventory-container">
       <div class="item" id="item1">
-        
+
       </div>
       <div class="item" id="item2">
-      
+
       </div>
       <div class="item" id="item3">
 
@@ -107,4 +115,5 @@
     </div>
   </footer>
 </body>
+
 </html>
