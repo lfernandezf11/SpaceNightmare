@@ -1,5 +1,5 @@
 import { Producto } from './Producto.js';
-import { groupBy } from '../Utils/helpers.js';
+import { groupBy } from './../Utils/helpers.js';
 //import { deepClone } from '../Utils/helpers.js';
 
 let rarezaSelected = null; //Variable en la que guardaremos la rareza elegida antes de aplicar el descuento aleatorio sobre el mercado.
