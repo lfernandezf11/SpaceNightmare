@@ -121,17 +121,18 @@ button:hover {
   border-radius: 0.4rem;
   width: 100px;
   height: 100px;
-   display: flex; /* Obligatorio para alinear el contenido */
+  display: flex; /* Obligatorio para alinear el contenido */
   justify-content: center;
 }
 
 .item img {
   display: block;
   max-height: 100%;
+  max-width: 100%;
   /* object-fit: contain; */
 }
 
-/* Escena inicial ------------------------------------------------- */
+/* Escena inicial y escena 3 ------------------------------------------------- */
 #player-card {
   margin-top: 1rem;
   border-radius: 1rem;
@@ -159,12 +160,12 @@ button:hover {
   padding: 1rem;
 }
 
-#player-photo {
+#player-photo1, #player-photo3 {
   flex: 0 0 45%;
   align-content: center;
 }
 
-#player-photo img {
+#player-photo1 img, #player-photo3 img {
   width: 100%;
   height: auto;
   object-fit: cover;
@@ -234,17 +235,6 @@ button:hover {
 
 
 /* --------------- CONTENIDO DE LAS ESCENAS --------------- */
-
-
-
-
-
-
-
-
-
-
-
 
 /* .row-1, .row-2, .row-3{
   padding: 32px;
@@ -321,7 +311,7 @@ button:hover {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  /* min-height: 16rem;         */
+  /* min-height: 16rem; */
   text-align: center;
   background: var(--primary-color);
   padding: 0.75rem;
@@ -367,7 +357,6 @@ button:hover {
 #scene-2 .card .price {
   font-weight: 500;
   color: var(--accent-color);
-  /* font-family: var(--font-content); */
 }
 
 

@@ -11,13 +11,13 @@ export function showScene(id) {
   document.getElementById(id).classList.add('active');
 }
 
-export function mostrarStats(jugador) {
-  const photo = document.getElementById('player-photo');
-  const name = document.getElementById('player-name');
-  const attack  = document.getElementById('attack');
-  const defense = document.getElementById('defense');
-  const life    = document.getElementById('life');
-  const points  = document.getElementById('points');
+export function mostrarStats(jugador, sufijo) {
+  const photo = document.getElementById('player-photo' + sufijo);
+  const name = document.getElementById('player-name' + sufijo);
+  const attack  = document.getElementById('attack' + sufijo);
+  const defense = document.getElementById('defense' + sufijo);
+  const life    = document.getElementById('life' + sufijo);
+  const points  = document.getElementById('points' + sufijo);
 
   photo.innerHTML = `<img src="${jugador.avatar}" alt="Foto del jugador">`;
   name.textContent = jugador.nombre;
