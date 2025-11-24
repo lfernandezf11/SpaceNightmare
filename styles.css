@@ -121,18 +121,14 @@ button:hover {
   border-radius: 0.4rem;
   width: 100px;
   height: 100px;
+   display: flex; /* Obligatorio para alinear el contenido */
+  justify-content: center;
 }
 
 .item img {
-  width: 100%;
-}
-
-.img-container {
-  width: 100px;
-}
-
-.img-container>img {
-  width: 100%;
+  display: block;
+  max-height: 100%;
+  /* object-fit: contain; */
 }
 
 /* Escena inicial ------------------------------------------------- */
@@ -313,7 +309,7 @@ button:hover {
 
 #scene-2 #card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 1rem;
   justify-content: center;
 }

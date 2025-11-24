@@ -6,12 +6,12 @@ import { productosCopy, selected, showCatalog, randomiseDiscount, paintInventory
 const goToScene2 = document.getElementById('goToScene2');
 const goToScene3 = document.getElementById('goToScene3');
 
-showScene('scene-2');
-// showScene('scene-1');
+// showScene('scene-2');
+showScene('scene-1');
 const jugador = new Jugador('Teniente al Mando F. Welsch', './img/astronaut.png');
-//mostrarStats(jugador);
+mostrarStats(jugador);
 
-// goToScene2.addEventListener('click', () => showScene('scene-2'));
+goToScene2.addEventListener('click', () => showScene('scene-2'));
 
 /* MERCADO --------------------------------------------*/
 showCatalog();
