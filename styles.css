@@ -215,69 +215,6 @@ button:hover {
 }
 
 
-
-/* Responsive: columnas a una sola si es estrecho */
-@media (max-width: 40rem) {
-  #player-card .columns {
-    flex-direction: column;
-  }
-
-  #player-photo {
-    flex: 1 0 auto;
-  }
-}
-
-
-
-
-
-
-
-
-/* --------------- CONTENIDO DE LAS ESCENAS --------------- */
-
-/* .row-1, .row-2, .row-3{
-  padding: 32px;
-  background: var(--primary-color);
-} */
-
-/* #scene-1 .row-1{
-  height: 40%;
-  display: flex;
-  justify-content: space-between;
-  background: var(--secondary-color);
-} */
-
-/* #scene-1 .row-2, #scene-3 .row-2{
-  height: 40%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 8px;
-} */
-/* 
-  #scene-1 .row-2:nth-child(3), 
-  #scene-1 .row-2:nth-child(4),
-  #scene-3 .row-2:nth-child(3), 
-  #scene-3 .row-2:nth-child(4){
-    grid-row-start: 2;
-  } */
-
-/* #scene-1 .stats, #scene-3 .stats{
-    background: var(--secondary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  #scene-1 .row-3,  #scene-3 .row-3{
-    height: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  } */
-
-
 /* Escenas con grid-cards: Mercado (escena 2) y Enemigos (escena 4) ------------------------------*/
 .scene-container>h2:first-of-type {
   color: var(--primary-color);
@@ -387,6 +324,16 @@ button:hover {
     color: var(--accent-color)
 }
 
+
+@media (max-width: 40rem) {
+  #player-card .columns {
+    flex-direction: column;
+  }
+
+  #player-photo {
+    flex: 1 0 auto;
+  }
+}
 
 @media (width < 640px) {
   #inventory-container {
