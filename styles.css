@@ -278,8 +278,8 @@ button:hover {
   } */
 
 
-/* Escena del Mercado ------------------------------*/
-#scene-2 .scene-container>h2:first-of-type {
+/* Escenas con grid-cards: Mercado (escena 2) y Enemigos (escena 4) ------------------------------*/
+.scene-container>h2:first-of-type {
   color: var(--primary-color);
   font-weight: 400;
 }
@@ -289,22 +289,30 @@ button:hover {
   color: var(--tertiary-color);
 }
 
-#scene-2 .market-container {
-  height: 52vh;
-  width: 90vw;
+#scene-2 .market-container, #scene-4 .enemies-container {
   display: block;
   overflow: auto;
   padding: 1rem;
 }
 
-#scene-2 #card-container {
+#scene-2 .market-container {
+  height: 52vh;
+  width: 90vw;
+}
+
+#scene-4 .enemies-container {
+  max-height: 65vh;
+  width: 75vw;
+}
+
+#scene-2 #card-container, #scene-4 #enemycard-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 1rem;
   justify-content: center;
 }
 
-#scene-2 .card {
+#scene-2 .card, #scene-4 .card{
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -339,16 +347,24 @@ button:hover {
   border: 3px solid var(--accent-color);
 }
 
-#scene-2 .card img {
+#scene-2 .card img, #scene-4 .card img{
   display: block;
-  width: 70%;
-  max-width: 8rem;
   aspect-ratio: 1 / 1;
   object-fit: contain;
   margin: 0 auto 0 auto;
 }
 
-#scene-2 .card .small {
+#scene-2 .card img {
+  width: 70%;
+  max-width: 8rem;
+}
+
+#scene-4 .card img {
+  width: 80%;
+  max-width: 12rem;
+}
+
+#scene-2 .card .small, #scene-4 .card .small {
   font-family: var(--font-content);
   text-transform: capitalize;
   font-weight: 600;
@@ -359,6 +375,17 @@ button:hover {
   color: var(--accent-color);
 }
 
+#scene-4 .card .boss {
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+#scene-4 .card .attackPlus {
+    font-family: var(--font-content);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-color)
+}
 
 
 @media (width < 640px) {

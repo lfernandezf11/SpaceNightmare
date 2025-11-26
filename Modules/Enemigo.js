@@ -26,8 +26,15 @@ export class Enemigo {
      * @returns {String} con las características del enemigo. 
      */
     presentar() {
-        return `Soy ${this.nombre}, un ${this.tipo} con ${this.vida} puntos de vida y ${this.ataque} de ataque.`;
+        return `
+            <img src="${this.avatar}" alt="${this.nombre}" title="${this.nombre}">
+            <p><strong>${this.nombre}</strong><br>
+            <span class="boss">${this.tipo}</span><br>
+            <span class="small">Ataque: ${this.ataque}<br> 
+            Vida: ${this.vida}</span></p>
+        `;
     }
+    
 };
 
 
@@ -55,7 +62,10 @@ export class Jefe extends Enemigo {
      * @returns {String} con las características del Jefe, incluyendo sus atributos de clase.
      */
     presentar() {
-        return `${super.presentar()} Además, tengo la habilidad especial "${this.habilidad}" y mi daño se multiplica por ${this.multiplicadorDanio}.`;
+        return `
+            ${super.presentar()}
+            <span class="attackPlus">Multiplica el daño x ${this.multiplicadorDanio}</span></p>
+        `;
     }
 
     /**

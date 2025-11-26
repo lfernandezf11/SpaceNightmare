@@ -1,12 +1,14 @@
 import { showScene, mostrarStats } from './Utils/dom.js';
 import { Jugador } from './Modules/Jugador.js';
 import { Producto } from './Modules/Producto.js';
-import { productosCopy, selected, showCatalog, randomiseDiscount, paintInventory, aplicarDescuentoRareza } from './Modules/Mercado.js';
+import { selected, showCatalog, paintInventory } from './Modules/Mercado.js';
+import { showBestiario } from './Modules/Bestiario.js';
 
 
 const goToScene2 = document.getElementById('goToScene2');
 const goToScene3 = document.getElementById('goToScene3');
 const goToScene4 = document.getElementById('goToScene4');
+const goToScene5 = document.getElementById('goToScene5');
 
 // showScene('scene-2');
 showScene('scene-1');
@@ -23,6 +25,18 @@ goToScene3.addEventListener('click', () => {
     showScene('scene-3');
     jugador.vida = jugador.vidaInicial; //Recalculamos la vida inicial una vez lleno el inventario.
     mostrarStats(jugador, 3);
+    paintInventory(jugador.inventario); 
+}); 
+
+goToScene4.addEventListener('click', () => {
+    showScene('scene-4');
+    showBestiario();
+    paintInventory(jugador.inventario); 
+}); 
+
+goToScene5.addEventListener('click', () => {
+    showScene('scene-5');
+    // showBestiario();
     paintInventory(jugador.inventario); 
 }); 
 
