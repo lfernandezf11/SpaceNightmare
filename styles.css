@@ -81,7 +81,7 @@ button {
 
 button:hover {
   background-color: yellow;
-  transform: translateY(-0.15rem) scale(1.1);
+  transform: translateY(-0.25rem) scale(1.1);
   box-shadow: 0 0 0.9rem rgba(255, 255, 0, 0.8);
   /* halo */
 }
@@ -121,7 +121,8 @@ button:hover {
   border-radius: 0.4rem;
   width: 100px;
   height: 100px;
-  display: flex; /* Obligatorio para alinear el contenido */
+  display: flex;
+  /* Obligatorio para alinear el contenido */
   justify-content: center;
 }
 
@@ -130,6 +131,11 @@ button:hover {
   max-height: 100%;
   max-width: 100%;
   /* object-fit: contain; */
+  transition: transform 0.3s ease;
+}
+
+.item img:hover {
+  transform: scale(1.15);
 }
 
 /* Escena inicial y escena 3 ------------------------------------------------- */
@@ -160,12 +166,14 @@ button:hover {
   padding: 1rem;
 }
 
-#player-photo1, #player-photo3 {
+#player-photo1,
+#player-photo3 {
   flex: 0 0 45%;
   align-content: center;
 }
 
-#player-photo1 img, #player-photo3 img {
+#player-photo1 img,
+#player-photo3 img {
   width: 100%;
   height: auto;
   object-fit: cover;
@@ -226,7 +234,8 @@ button:hover {
   color: var(--tertiary-color);
 }
 
-#scene-2 .market-container, #scene-4 .enemies-container {
+#scene-2 .market-container,
+#scene-4 .enemies-container {
   display: block;
   overflow: auto;
   padding: 1rem;
@@ -242,14 +251,16 @@ button:hover {
   width: 75vw;
 }
 
-#scene-2 #card-container, #scene-4 #enemycard-container {
+#scene-2 #card-container,
+#scene-4 #enemycard-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 1rem;
   justify-content: center;
 }
 
-#scene-2 .card, #scene-4 .card{
+#scene-2 .card,
+#scene-4 .card {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -270,9 +281,38 @@ button:hover {
   transition: box-shadow .25s ease, transform .2s ease;
 }
 
+/* Animación de compra de la escena del Mercado (click en botón añadir) --------------------*/
+#scene-2 .card button {
+  position: relative;
+}
+
+#scene-2 .card .cart-icon {
+  /* Posicionamiento del icon respecto al botón */
+  position: absolute;
+  right: 35%;
+  bottom: 10%;
+  /* transform: translate(-50%, -50%); Con un top 50 y un left 50, supuestamente el translate te lo coloca en la mitad exacta del parent */
+  font-size: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.cart-icon.show {
+  animation: show 1.5s; /* La animación dura lo mismo que el setTimeOut antes de eliminar el icon. */
+}
+
+#scene-2 .card:hover,
+#scene-4 .card:hover {
+  transform: translate(2px, -4px);
+  /* derecha y arriba */
+  box-shadow:
+    0 0 2.2rem rgba(210, 222, 50, 0.7),
+    0 0 0.25rem rgba(255, 255, 255, 0.6);
+}
+
 #scene-2 .card.selected {
   background-color: var(--tertiary-color);
-  box-shadow: none;
 }
 
 #scene-2 .card.selected button {
@@ -284,7 +324,8 @@ button:hover {
   border: 3px solid var(--accent-color);
 }
 
-#scene-2 .card img, #scene-4 .card img{
+#scene-2 .card img,
+#scene-4 .card img {
   display: block;
   aspect-ratio: 1 / 1;
   object-fit: contain;
@@ -301,7 +342,8 @@ button:hover {
   max-width: 12rem;
 }
 
-#scene-2 .card .small, #scene-4 .card .small {
+#scene-2 .card .small,
+#scene-4 .card .small {
   font-family: var(--font-content);
   text-transform: capitalize;
   font-weight: 600;
@@ -318,10 +360,10 @@ button:hover {
 }
 
 #scene-4 .card .attackPlus {
-    font-family: var(--font-content);
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--accent-color)
+  font-family: var(--font-content);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-color)
 }
 
 
@@ -338,5 +380,30 @@ button:hover {
 @media (width < 640px) {
   #inventory-container {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(0);
+    filter: blur(2px);
+  }
+
+  20% {
+    opacity: 1;
+    transform: scale(1.15) translateY(-50px);
+    filter: none;
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(0.9) translateY(0);
+    /* filter: blur(1px); */
   }
 }
