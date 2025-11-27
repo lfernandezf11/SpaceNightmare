@@ -2,22 +2,20 @@ import { showScene, mostrarStats } from './Utils/dom.js';
 import { Jugador } from './Modules/Jugador.js';
 import { Producto } from './Modules/Producto.js';
 import { selected, showCatalog, paintInventory } from './Modules/Mercado.js';
-import { showBestiario } from './Modules/Bestiario.js';
+import { showBestiario, getRandomEnemy } from './Modules/Bestiario.js';
 
 
-const goToScene2 = document.getElementById('goToScene2');
-const goToScene3 = document.getElementById('goToScene3');
-const goToScene4 = document.getElementById('goToScene4');
-const goToScene5 = document.getElementById('goToScene5');
+const goToScene2 = document.getElementById('goToScene2'); /* mercado */
+const goToScene3 = document.getElementById('goToScene3'); /* jugador con inventario */
+const goToScene4 = document.getElementById('goToScene4'); /* enemigos*/
+const goToScene5 = document.getElementById('goToScene5'); /* batalla */
 
 // showScene('scene-2');
 showScene('scene-1');
-const jugador = new Jugador('Teniente al Mando F. Welsch', './img/astronaut.png');
+export const jugador = new Jugador('Teniente al Mando F. Welsch', './img/astronaut.png');
 mostrarStats(jugador, 1);
 
 goToScene2.addEventListener('click', () => showScene('scene-2'));
-
-/* MERCADO --------------------------------------------*/
 showCatalog();
 
 goToScene3.addEventListener('click', () => {
@@ -36,8 +34,9 @@ goToScene4.addEventListener('click', () => {
 
 goToScene5.addEventListener('click', () => {
     showScene('scene-5');
-    // showBestiario();
     paintInventory(jugador.inventario); 
+    let enemigo = getRandomEnemy();
+    //combat(jugador, enemigo)
 }); 
 
 // jugador.inventario = [new Producto("Cuchilla de Plasma", 900, "Rara", "Arma", { ataque: 25 }, "./../img/knife.png"),

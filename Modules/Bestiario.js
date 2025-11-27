@@ -21,3 +21,8 @@ export function showBestiario() {
         container.appendChild(card);
     });
 }
+
+export function getRandomEnemy() {
+  let index = Math.floor(Math.random() * bestiario.length);
+  return bestiario[index];
+}
