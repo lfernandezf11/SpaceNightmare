@@ -17,7 +17,7 @@ export class Jugador {
         this.avatar = avatar;
         this.puntos = 0;
         this.inventario = [];
-        this.vidaMaxima = 100;
+        this.vidaMaxima = 80;
         this.vida = this.vidaMaxima;
     }
 

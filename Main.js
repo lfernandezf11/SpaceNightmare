@@ -23,38 +23,54 @@ goToScene2.addEventListener('click', () => showScene('scene-2'));
 showCatalog();
 
 goToScene3.addEventListener('click', () => {
-    jugador.inventario = [...selected];
-    showScene('scene-3');
-    jugador.vida = jugador.vidaInicial; //Recalculamos la vida inicial una vez lleno el inventario.
-    mostrarStats(jugador, 3);
-    paintInventory(jugador.inventario); 
-}); 
+  jugador.inventario = [...selected];
+  showScene('scene-3');
+  jugador.vida = jugador.vidaInicial; //Recalculamos la vida inicial una vez lleno el inventario.
+  mostrarStats(jugador, 3);
+  paintInventory(jugador.inventario);
+});
+
 
 goToScene4.addEventListener('click', () => {
-    showScene('scene-4');
-    showBestiario();
-    paintInventory(jugador.inventario); 
-}); 
+  showScene('scene-4');
+  showBestiario();
+});
 
-
+// Variable para almacenar la 
+const MAX_ROUND = 3; // Número máximo de batalla
+let round = 0; // Ronda de batalla actual. La declaramos a nivel global porque la necesitan tanto el listener del cambio
+               // de escena como el listener de avance de ronda. 
 
 goToScene5.addEventListener('click', () => {
-    showScene('scene-5');
-    paintInventory(jugador.inventario); 
+  showScene('scene-5');
+  startNextRound();   // La primera ronda se ejecuta cuando la escena carga, y es dentro cuando la variable 'round' toma valor.
+});
 
-    let round = 1
-    while(round <= 3 && jugador.vida > 0){
-        let enemigo = getRandomEnemy();
-        paintBattle(jugador, enemigo);
+nextBattle.addEventListener('click', () => {
+  startNextRound();   // siguientes rondas
+});
 
-        combat(jugador, enemigo);
-        nextBattle.addEventListener('click', () => {
-            round += 1;
-        })
-    }
+function startNextRound() {
+  // Habilitamos el botón de finalizar partida si no se puede hacer la ronda
+  if (round >= MAX_ROUND || jugador.vida <= 0) { 
     goToScene6.classList.remove('hidden');
     nextBattle.classList.add('hidden');
-}); 
+    return;
+  }
+  round += 1; // Si hacer una ronda más es posible, se ejecuta.
+
+  const enemigo = getRandomEnemy();
+  paintBattle(jugador, enemigo);
+  combat(jugador, enemigo);  
+
+  // Tras el combate, reevaluamos si las condiciones han cambiado, y por tanto debe hacerlo el botón disponible (antes de terminar la ejecución de la función).
+  if (round >= MAX_ROUND || jugador.vida <= 0) {
+    goToScene6.classList.remove('hidden');
+    nextBattle.classList.add('hidden');
+    return;
+  }
+}
+
 
 // jugador.inventario = [new Producto("Cuchilla de Plasma", 900, "Rara", "Arma", { ataque: 25 }, "./../img/knife.png"),
 //     new Producto("Casco Antirradiación", 600, "Infrecuente", "Armadura", { defensa: 20 }, "./../img/helmet.png"),
@@ -66,7 +82,7 @@ goToScene5.addEventListener('click', () => {
 //     showScene('scene-5');
 //     // jugador.vida = jugador.vidaInicial; //Recalculamos la vida inicial una vez lleno el inventario.
 //     // mostrarStats(jugador, 3);
-//     paintInventory(jugador.inventario); 
+//     paintInventory(jugador.inventario);
 
 
 //location.reload();

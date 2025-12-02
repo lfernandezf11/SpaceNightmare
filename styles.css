@@ -373,7 +373,7 @@ button:hover {
   overflow: auto;
   padding: 1rem;
   width: 100vw;
-  max-height: 55vh;
+  max-height: auto;
 }
 #scene-5 #fighters {
   display: flex;
