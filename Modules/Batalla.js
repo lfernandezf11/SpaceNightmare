@@ -14,7 +14,7 @@ const playerPoints = document.querySelector('#player-points span');
  * Finalmente muestra en pantalla el ganador y los puntos conseguidos.
  *
  * @param {Jugador} jugador - Objeto que representa al jugador.
- * @param {(Enemigo|Jefe)} enemigo - Objeto que representa al enemigo, de tipo 'Enemigo' o 'Jefe'.
+ * @param {Enemigo|Jefe} enemigo - Objeto que representa al enemigo, de tipo 'Enemigo' o 'Jefe'.
  */
 export function combat(jugador, enemigo) {
   let hpPlayer = jugador.vida;
