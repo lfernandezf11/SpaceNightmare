@@ -1,4 +1,5 @@
 import { showScene, mostrarStats } from './Utils/utils.js';
+import { Enemigo } from './Modules/Enemigo.js';
 import { selected, showCatalog, paintInventory } from './Modules/Mercado.js';
 import { showBestiario, getRandomEnemy } from './Modules/Bestiario.js';
 import { jugador } from './Utils/constants.js';

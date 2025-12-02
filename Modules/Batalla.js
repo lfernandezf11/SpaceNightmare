@@ -60,11 +60,11 @@ export function combat(jugador, enemigo) {
  * Pinta en pantalla los avatares del jugador y del enemigo.
  *
  * @param {Jugador} jugador - Objeto del jugador con su propiedad avatar.
- * @param {(Enemigo|Jefe)} enemigo - Objeto del enemigo con su propiedad avatar.
+ * @param {Enemigo|Jefe} enemigo - Objeto del enemigo con su propiedad avatar.
  */
 export function paintBattle(jugador, enemigo) {
   player.innerHTML = `<img src="${jugador.avatar}" alt="${jugador.nombre}, jugador"></img>`;
-  enemy.innerHTML = `<img src="${enemigo.image}" alt="${enemigo.nombre}, contrincante"></img>`;
+  enemy.innerHTML = `<img src="${enemigo.avatar}" alt="${enemigo.nombre}, contrincante"></img>`;
 }
 
 /**
