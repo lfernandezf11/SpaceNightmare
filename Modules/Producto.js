@@ -1,4 +1,4 @@
-import { EUR } from './../Utils/constants.js';
+import { EUR } from './../Utils/utils.js';
 
 export class Producto {
     id;

@@ -1,4 +1,45 @@
 /**
+ * Formateador de números a euros según la convención española.
+ * Intl.NumberFormat() clase de JS para formatear números
+ * @example
+ * EUR.format(1500); // "1.500,00 €"
+ */
+export const EUR = new Intl.NumberFormat('es-ES', {
+  style: 'currency',
+  currency: 'EUR'
+});
+
+
+/**
+  * Permite mostrar u ocultar un elemento (escena) de la pantalla.
+  * Selecciona todos los elementos con la clase scene y les remueve la clase active
+  * Selecciona el elemento con el id especificado y le añade la clase active
+  * @param {number} id - identificador del elemento.
+  */
+export function showScene(id) {
+  document.querySelectorAll('.scene').forEach(
+    element => element.classList.remove('active')
+  );
+  document.getElementById(id).classList.add('active');
+}
+
+export function mostrarStats(jugador, sufijo) {
+  const photo = document.getElementById('player-photo' + sufijo);
+  const name = document.getElementById('player-name' + sufijo);
+  const attack  = document.getElementById('attack' + sufijo);
+  const defense = document.getElementById('defense' + sufijo);
+  const life    = document.getElementById('life' + sufijo);
+  const points  = document.getElementById('points' + sufijo);
+
+  photo.innerHTML = `<img src="${jugador.avatar}" alt="Foto del jugador">`;
+  name.textContent = jugador.nombre;
+  attack.textContent = jugador.ataqueTotal;
+  defense.textContent = jugador.defensaTotal;
+  life.textContent = jugador.vida;
+  points.textContent = jugador.puntos;
+}
+
+/**
  * Clonación profunda manual (soporta objetos y arrays anidados)
  * @param {any} obj - Objeto a clonar profundamente
  * @returns {any} Copia independiente de obj
@@ -44,4 +85,3 @@ export function groupBy(array, keyFunc) {
         return acc;
     }, {}); // Inicializamos el acumulador como un objeto vacío que contendrá los grupos.
 }
-
