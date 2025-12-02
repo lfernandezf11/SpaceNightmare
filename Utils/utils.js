@@ -9,13 +9,13 @@ export const EUR = new Intl.NumberFormat('es-ES', {
   currency: 'EUR'
 });
 
-
 /**
-  * Permite mostrar u ocultar un elemento (escena) de la pantalla.
-  * Selecciona todos los elementos con la clase scene y les remueve la clase active
-  * Selecciona el elemento con el id especificado y le añade la clase active
-  * @param {number} id - identificador del elemento.
-  */
+ * Permite mostrar u ocultar un elemento (escena) de la pantalla.
+ * Selecciona todos los elementos con la clase scene y les remueve la clase active
+ * Selecciona el elemento con el id especificado y le añade la clase active
+ * @param {string|number} id - identificador del elemento (se convertirá a string para buscar el id).
+ * @returns {void}
+ */
 export function showScene(id) {
   document.querySelectorAll('.scene').forEach(
     element => element.classList.remove('active')
@@ -23,9 +23,17 @@ export function showScene(id) {
   document.getElementById(id).classList.add('active');
 }
 
+/**
+ * Muestra las estadísticas del jugador en los elementos del DOM
+ * cuyo id comparte un mismo sufijo.
+ *
+ * @param {Jugador} jugador - Objeto jugador con stats y avatar.
+ * @param {string} sufijo - Sufijo que se añade al id de cada elemento.
+ * @returns {void}
+ */
 export function mostrarStats(jugador, sufijo) {
-  const photo = document.getElementById('player-photo' + sufijo);
-  const name = document.getElementById('player-name' + sufijo);
+  const photo   = document.getElementById('player-photo' + sufijo);
+  const name    = document.getElementById('player-name' + sufijo);
   const attack  = document.getElementById('attack' + sufijo);
   const defense = document.getElementById('defense' + sufijo);
   const life    = document.getElementById('life' + sufijo);
@@ -44,17 +52,16 @@ export function mostrarStats(jugador, sufijo) {
  * @param {any} obj - Objeto a clonar profundamente
  * @returns {any} Copia independiente de obj
  */
-
 export function deepClone(obj) {
-    if (obj === null || typeof obj !== 'object') return obj;
-    if (Array.isArray(obj)) return obj.map(item => deepClone(item));
-    const clone = {};
-    for (const key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-            clone[key] = deepClone(obj[key]);
-        }
+  if (obj === null || typeof obj !== 'object') return obj;
+  if (Array.isArray(obj)) return obj.map(item => deepClone(item));
+  const clone = {};
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      clone[key] = deepClone(obj[key]);
     }
-    return clone;
+  }
+  return clone;
 }
 
 /**
@@ -64,24 +71,24 @@ export function deepClone(obj) {
  * clave de agrupación. Devuelve un objeto cuyas propiedades son las claves (String) y cuyos
  * valores son arrays con los elementos que pertenecen a cada grupo.
  *
- * @param {Array} array - Array de elementos a agrupar.
- * @param {Function} keyFunc - Función que recibe un elemento y devuelve la clave por la que se agrupará (puede devolver string, number, boolean...).
- * @returns {Object} Objeto que mapea cada clave a un array con los elementos del grupo.
+ * @param {Array<any>} array - Array de elementos a agrupar.
+ * @param {(item: any) => string|number|boolean} keyFunc - Función que recibe un elemento y devuelve la clave por la que se agrupará.
+ * @returns {Record<string, any[]>} Objeto que mapea cada clave a un array con los elementos del grupo.
  *
  * @example
  * const items = [{tipo:'arma'},{tipo:'poción'},{tipo:'arma'}];
  * groupBy(items, item => item.tipo);
- * // Devuelve: { arma: [...], poción: [...] } }
+ * // Devuelve: { arma: [...], poción: [...] }
  */
 export function groupBy(array, keyFunc) {
-    // Usamos reduce para acumular los grupos en un único objeto `acc`.
-    return array.reduce((acc, item) => {
-        // Calculamos la clave para el elemento actual llamando a keyFunc.
-        const key = keyFunc(item);
-        // Si aún no existe un array asociado a esa clave, lo inicializamos.
-        acc[key] = acc[key] || [];
-        acc[key].push(item);
-        // Devolvemos el acumulador para la siguiente iteración.
-        return acc;
-    }, {}); // Inicializamos el acumulador como un objeto vacío que contendrá los grupos.
+  // Usamos reduce para acumular los grupos en un único objeto `acc`.
+  return array.reduce((acc, item) => {
+    // Calculamos la clave para el elemento actual llamando a keyFunc.
+    const key = keyFunc(item);
+    // Si aún no existe un array asociado a esa clave, lo inicializamos.
+    acc[key] = acc[key] || [];
+    acc[key].push(item);
+    // Devolvemos el acumulador para la siguiente iteración.
+    return acc;
+  }, {}); // Inicializamos el acumulador como un objeto vacío que contendrá los grupos.
 }

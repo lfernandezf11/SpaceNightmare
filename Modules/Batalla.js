@@ -64,7 +64,7 @@ export function combat(jugador, enemigo) {
  */
 export function paintBattle(jugador, enemigo) {
   player.innerHTML = `<img src="${jugador.avatar}" alt="${jugador.nombre}, jugador"></img>`;
-  enemy.innerHTML = `<img src="${enemigo.avatar}" alt="${enemigo.nombre}, contrincante"></img>`;
+  enemy.innerHTML = `<img src="${enemigo.image}" alt="${enemigo.nombre}, contrincante"></img>`;
 }
 
 /**
