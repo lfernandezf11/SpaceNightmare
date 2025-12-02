@@ -10,7 +10,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Science+Gothic:wght@100..900&display=swap"
     rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
   <script type="module" src='./Main.js' defer></script>
 </head>
 
@@ -53,7 +53,7 @@
 
     <div id="scene-2" class="scene">
       <div class="scene-container">
-        <h2 >Elige bien qué compras: tu vida depende de ello__</h2>
+        <h2>Elige bien qué compras: tu vida depende de ello__</h2>
         <h2 id="discount"></h2>
         <div class="market-container">
           <div id="card-container">
@@ -114,16 +114,32 @@
     <div id="scene-5" class="scene">
       <div class="scene-container">
         <h2>¡Que comience la batalla!</h2>
-        <h2 id="discount"></h2>
-        <div class="market-container">
-          <div id="card-container">
 
+        <div class="battle-container">
+          <div id="fighters">
+            <div id="player-container">
+              <img src="./img/astronaut.png" alt="">
+            </div>
+
+            <div id="versus"><img src="./img/versus.png" alt="" srcset=""></div>
+
+            <div id="enemy-container">
+              <img src="./img/alien.png" alt="">
+            </div>
           </div>
         </div>
-        <div class="row-3">
-          <button id="goToScene3">Comprar</button>
+        <div class="battle-winner">
+          <p id="winner-name">Ganador: <span></span></p>
+          <p id="player-points">Puntos ganados: <span></span></p>
         </div>
+        <div class="row-3">
+          <button id="nextBattle">Siguiente batalla</button>
+          <button id="goToScene6" class="hidden disabled">Finalizar</button>
+        </div>
+
       </div>
+
+    </div>
     </div>
   </main>
 

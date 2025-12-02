@@ -1,4 +1,4 @@
-import { deepClone, groupBy } from './../Utils/helpers.js';
+import { deepClone, groupBy } from './../Utils/utils.js';
 
 export class Jugador {
     nombre;

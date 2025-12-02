@@ -138,7 +138,7 @@ button:hover {
   transform: scale(1.15);
 }
 
-/* Escena inicial y escena 3 ------------------------------------------------- */
+/* Escenas con tarjeta de personaje: Inicial (escena 1) y Jugador con Inventario (escena 3) ------------------------------------------------- */
 #player-card {
   margin-top: 1rem;
   border-radius: 1rem;
@@ -366,6 +366,51 @@ button:hover {
   color: var(--accent-color)
 }
 
+
+/* Escena de Batalla (escena 5) -----------------------------------------------------------*/
+#scene-5 .battle-container {
+  display: block;
+  overflow: auto;
+  padding: 1rem;
+  width: 100vw;
+  max-height: 55vh;
+}
+#scene-5 #fighters {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#scene-5 #fighters div{
+  max-width: 25%;
+  display: block;
+  align-content: center;
+}
+
+#scene-5 #fighters #versus {
+  max-width: 15%;
+}
+
+#scene-5 #fighters img{
+  display:block;
+  object-fit: cover;
+  width: 100%;
+}
+
+#scene-5 .battle-winner {
+  padding-bottom: 1rem;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+#scene-5 .battle-winner span {
+  font-family: var(--font-content);
+}
+
+#scene-5 .hidden {
+  display: none;
+  pointer-events: none;
+}
 
 @media (max-width: 40rem) {
   #player-card .columns {

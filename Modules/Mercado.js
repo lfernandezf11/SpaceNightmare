@@ -1,31 +1,10 @@
 import { Producto } from './Producto.js';
-import { groupBy } from './../Utils/helpers.js';
-import { deepClone } from '../Utils/helpers.js';
+import { productos } from './../Utils/constants.js';
+import { groupBy } from './../Utils/utils.js';
 
 let rarezaSelected = null; //Variable en la que guardaremos la rareza elegida antes de aplicar el descuento aleatorio sobre el mercado.
 let porcentajeSelected = null; //Lo mismo pero para el porcentaje
-/**
- * Lista de productos disponibles en el inventario.
- * Cada producto es una instancia de la clase Producto.
- */
 
-export const productos = [
-    new Producto("Cuchilla de Plasma", 900, "Rara", "Arma", { ataque: 25 }, "./../img/knife.png"),
-    new Producto("Casco Antirradiación", 600, "Infrecuente", "Armadura", { defensa: 20 }, "./../img/helmet.png"),
-    new Producto("Pistola Iónica de Emergencia", 550, "Común", "Arma", { ataque: 12 }, "./../img/pistol.png"),
-    new Producto("Inyector de Adrenalina Sintética", 420, "Infrecuente", "Consumible", { vida: 25 }, "./../img/injector.png"),
-    new Producto("Lanza Fotónica", 1500, "Legendaria", "Arma", { ataque: 55 }, "./../img/lance.png"),
-    new Producto("Suero Estabilizador de Oxígeno", 320, "Común", "Consumible", { vida: 18 }, "./../img/container.png"),
-    new Producto("Kit de Nanobots Médicos", 750, "Épica", "Consumible", { vida: 60 }, "./../img/medicalkit.png"),
-    new Producto("Guantes de Impacto Cinético", 700, "Infrecuente", "Arma", { ataque: 18 }, "./../img/glove.png"),
-    new Producto("Placas EVA de Titanio", 800, "Rara", "Armadura", { defensa: 30 }, "./../img/plank.png"),
-    new Producto("Escudo de Campo Portátil", 1100, "Épica", "Armadura", { defensa: 45 }, "./../img/shield.png"),
-    new Producto("Ampolla de Regeneración Rápida", 650, "Rara", "Consumible", { vida: 40 }, "./../img/liquid.png"),
-    new Producto("Chaleco Antimeteoro", 950, "Rara", "Armadura", { defensa: 35 }, "./../img/vest.png"),
-    new Producto("Rifle Gauss de a Bordo", 1300, "Épica", "Arma", { ataque: 40 }, "./../img/rifle.png"),
-    new Producto("Traje Táctico de Desembarco", 1400, "Legendaria", "Armadura", { defensa: 55 }, "./../img/suit.png"),
-    new Producto("Ración Hipercalórica de Emergencia", 280, "Común", "Consumible", { vida: 15 }, "./../img/food.png")
-];
 
 export let productosCopy = productos.map(p =>
     new Producto(p.nombre, p.precio, p.rareza, p.tipo, { ...p.bonus }, p.image)); // Usamos un clon del mercado para no alterar el original a la hora de aplicar descuentos.

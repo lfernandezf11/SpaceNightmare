@@ -1,18 +1,21 @@
-import { showScene, mostrarStats } from './Utils/dom.js';
-import { Jugador } from './Modules/Jugador.js';
-import { Producto } from './Modules/Producto.js';
+import { showScene, mostrarStats } from './Utils/utils.js';
 import { selected, showCatalog, paintInventory } from './Modules/Mercado.js';
 import { showBestiario, getRandomEnemy } from './Modules/Bestiario.js';
+import { jugador } from './Utils/constants.js';
+import { combat, paintBattle } from './Modules/Batalla.js';
 
 
-const goToScene2 = document.getElementById('goToScene2'); /* mercado */
-const goToScene3 = document.getElementById('goToScene3'); /* jugador con inventario */
-const goToScene4 = document.getElementById('goToScene4'); /* enemigos*/
-const goToScene5 = document.getElementById('goToScene5'); /* batalla */
+const goToScene2 = document.getElementById('goToScene2'); /* Escena 2: mercado */
+const goToScene3 = document.getElementById('goToScene3'); /* Escena 3: jugador con inventario actualizado */
+const goToScene4 = document.getElementById('goToScene4'); /* Escena 4: enemigos*/
+const goToScene5 = document.getElementById('goToScene5'); /* Escena 5: batalla */
+const goToScene6 = document.getElementById('goToScene6'); /* Escena 6: ranking */
 
-// showScene('scene-2');
+const nextBattle = document.getElementById('nextBattle'); /* Botón para la siguiente batalla*/
+
+
+// showScene('scene-5');
 showScene('scene-1');
-export const jugador = new Jugador('Teniente al Mando F. Welsch', './img/astronaut.png');
 mostrarStats(jugador, 1);
 
 goToScene2.addEventListener('click', () => showScene('scene-2'));
@@ -32,11 +35,24 @@ goToScene4.addEventListener('click', () => {
     paintInventory(jugador.inventario); 
 }); 
 
+
+
 goToScene5.addEventListener('click', () => {
     showScene('scene-5');
     paintInventory(jugador.inventario); 
-    let enemigo = getRandomEnemy();
-    //combat(jugador, enemigo)
+
+    let round = 1
+    while(round <= 3 && jugador.vida > 0){
+        let enemigo = getRandomEnemy();
+        paintBattle(jugador, enemigo);
+
+        combat(jugador, enemigo);
+        nextBattle.addEventListener('click', () => {
+            round += 1;
+        })
+    }
+    goToScene6.classList.remove('hidden');
+    nextBattle.classList.add('hidden');
 }); 
 
 // jugador.inventario = [new Producto("Cuchilla de Plasma", 900, "Rara", "Arma", { ataque: 25 }, "./../img/knife.png"),
@@ -46,9 +62,9 @@ goToScene5.addEventListener('click', () => {
 //     new Producto("Lanza Fotónica", 1500, "Legendaria", "Arma", { ataque: 55 }, "./../img/lance.png"),
 //     new Producto("Suero Estabilizador de Oxígeno", 320, "Común", "Consumible", { vida: 18 }, "./../img/container.png")]
 
-//     showScene('scene-3');
-//     jugador.vida = jugador.vidaInicial; //Recalculamos la vida inicial una vez lleno el inventario.
-//     mostrarStats(jugador, 3);
+//     showScene('scene-5');
+//     // jugador.vida = jugador.vidaInicial; //Recalculamos la vida inicial una vez lleno el inventario.
+//     // mostrarStats(jugador, 3);
 //     paintInventory(jugador.inventario); 
 
 
