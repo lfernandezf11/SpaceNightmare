@@ -39,7 +39,7 @@ export class Producto {
 
   /**
    * Devuelve la ruta de imagen según el tipo.
-   * Implementación en la versión previa.
+   * @deprecated Implementación en la versión previa.
    */
   // setImage(tipo) {
   //     switch (tipo.toLowerCase()) { // Las rutas se establecen relativas a index.html
