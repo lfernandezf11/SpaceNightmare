@@ -59,7 +59,7 @@ header {
 
 h1 {
   padding-top: 1rem;
-  color: whitesmoke;
+  color: var(--primary-color);
 }
 
 button {
@@ -434,6 +434,48 @@ button:hover {
 }
 
 
+/* Escena de Ranking ----------------------------------------------------------------*/
+#scene-6 .results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 80vh;
+  gap: 1rem;
+  color: var(--primary-color);
+}
+
+#scene-6 .results-container img {
+  display: block;
+  max-width: 30%;
+}
+
+#scene-6 #rankingValue {
+  line-height: 2rem;
+  text-align: center;
+}
+
+#scene-6 #rankingValue #player-nameEnd {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+#scene-6 #rankingValue #player-pointsEnd, #scene-6 h4 {
+  font-family: var(--font-content);
+  font-size: 1.2rem;
+}
+
+#scene-6 #rankingValue #player-pointsEnd span, 
+#scene-6 h4 {
+  font-weight: bold;
+  color: var(--tertiary-color);
+}
+
+#scene-6 h4 span {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
 
 
 @media (max-width: 40rem) {
@@ -473,7 +515,6 @@ button:hover {
   100% {
     opacity: 1;
     transform: scale(0.9) translateY(0);
-    /* filter: blur(1px); */
   }
 }
 
