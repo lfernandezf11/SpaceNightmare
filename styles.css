@@ -301,6 +301,8 @@ button:hover {
 .cart-icon.show {
   animation: show 1.5s; /* La animación dura lo mismo que el setTimeOut antes de eliminar el icon. */
 }
+/* Fin de animación */
+
 
 #scene-2 .card:hover,
 #scene-4 .card:hover {
@@ -374,6 +376,7 @@ button:hover {
   padding: 1rem;
   width: 100vw;
   max-height: auto;
+  overflow-x: hidden; /* Reforzado aquí el overflow-x: hidden del body, puesto que salía un scroll horizontal al animar la entrada */
 }
 #scene-5 #fighters {
   display: flex;
@@ -411,6 +414,27 @@ button:hover {
   display: none;
   pointer-events: none;
 }
+
+/* Animación de entrada de contrincantes en la batalla --------------------*/
+/* Posición inicial de los contenedores */
+#player-container { 
+  transform: translateX(100vw); 
+}
+
+#enemy-container  { 
+  transform: translateX(-100vw); 
+}
+
+#player-container.enter { 
+  animation: enterPlayer 1.2s ease-out forwards; /* Forwards asegura que los elementos mantienen el estado final de la animación */
+}
+
+#enemy-container.enter  { 
+  animation: enterEnemy 1.2s ease-out forwards; 
+}
+
+
+
 
 @media (max-width: 40rem) {
   #player-card .columns {
@@ -451,4 +475,16 @@ button:hover {
     transform: scale(0.9) translateY(0);
     /* filter: blur(1px); */
   }
+}
+
+@keyframes enterPlayer { 
+  to { 
+    transform: translateX(0); 
+  } 
+}
+
+@keyframes enterEnemy  { 
+  to { 
+    transform: translateX(0); 
+  } 
 }

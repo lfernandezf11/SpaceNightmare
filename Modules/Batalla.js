@@ -1,8 +1,22 @@
+/**
+ * Módulo de lógica de combate.
+ * Se encarga de:
+ *  - Ejecutar los combates por turnos entre un Jugador y un Enemigo/Jefe.
+ *  - Calcular vida, daño recibido y puntos obtenidos.
+ *  - Pintar los avatares en la escena de batalla.
+ *  - Actualizar en la interfaz el ganador y los puntos conseguidos.
+ *
+ * Exporta:
+ *  - playerContainer, enemyContainer: referencias a los contenedores del DOM.
+ *  - combat(jugador, enemigo): función principal de combate.
+ *  - paintBattle(jugador, enemigo): pinta los avatares en pantalla.
+ */
+
 import { Jefe } from './Enemigo.js';
 import { Jugador } from './Jugador.js';
 
-const player = document.getElementById('player-container');
-const enemy = document.getElementById('enemy-container');
+export const playerContainer = document.getElementById('player-container'); // Se utilizarán en el main para recargar las animaciones
+export const enemyContainer = document.getElementById('enemy-container');
 const winner = document.querySelector('#winner-name span');
 const playerPoints = document.querySelector('#player-points span');
 
@@ -70,6 +84,7 @@ export function combat(jugador, enemigo) {
   showWinner(winnerName, points);
 }
 
+
 /**
  * Pinta en pantalla los avatares del jugador y del enemigo.
  *
@@ -77,9 +92,10 @@ export function combat(jugador, enemigo) {
  * @param {Enemigo|Jefe} enemigo - Objeto del enemigo con su propiedad avatar.
  */
 export function paintBattle(jugador, enemigo) {
-  player.innerHTML = `<img src="${jugador.avatar}" alt="${jugador.nombre}, jugador"></img>`;
-  enemy.innerHTML = `<img src="${enemigo.avatar}" alt="${enemigo.nombre}, contrincante"></img>`;
+  playerContainer.innerHTML = `<img src="${jugador.avatar}" alt="${jugador.nombre}, jugador"></img>`;
+  enemyContainer.innerHTML = `<img src="${enemigo.avatar}" alt="${enemigo.nombre}, contrincante"></img>`;
 }
+
 
 /**
  * Muestra el nombre del ganador y los puntos obtenidos en la interfaz.

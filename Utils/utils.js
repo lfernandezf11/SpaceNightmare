@@ -77,3 +77,10 @@ export function groupBy(array, keyFunc) {
     return acc;
   }, {}); // Inicializamos el acumulador como un objeto vacío que contendrá los grupos.
 }
+
+
+export function reloadAnimation(DOMnode, animationClass) {
+  DOMnode.classList.remove(animationClass);
+  void DOMnode.offsetWidth;
+  DOMnode.classList.add(animationClass);
+}

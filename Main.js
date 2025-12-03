@@ -1,9 +1,9 @@
-import { showScene, mostrarStats } from './Utils/utils.js';
+import { showScene, mostrarStats, reloadAnimation } from './Utils/utils.js';
 import { Jugador } from './Modules/Jugador.js';
 import { selected, showCatalog, paintInventory } from './Modules/Mercado.js';
 import { showBestiario, getRandomEnemy } from './Modules/Bestiario.js';
 import { jugador } from './Utils/constants.js';
-import { combat, paintBattle } from './Modules/Batalla.js';
+import { combat, paintBattle, playerContainer, enemyContainer } from './Modules/Batalla.js';
 
 
 const goToScene2 = document.getElementById('goToScene2'); /* Escena 2: mercado */
@@ -15,7 +15,6 @@ const goToScene6 = document.getElementById('goToScene6'); /* Escena 6: ranking *
 const nextBattle = document.getElementById('nextBattle'); /* Botón para la siguiente batalla*/
 
 
-// showScene('scene-5');
 showScene('scene-1');
 mostrarStats(jugador, 1);
 
@@ -64,6 +63,9 @@ function startNextRound() {
   const enemigo = getRandomEnemy();
   paintBattle(jugador, enemigo);
   combat(jugador, enemigo);  
+  // Recargamos las animaciones conforme se ejecutan, para tenerlas listas para el siguiente combate.
+  reloadAnimation(playerContainer, 'enter');
+  reloadAnimation(enemyContainer, 'enter');
 
   // Tras el combate, reevaluamos si las condiciones han cambiado, y por tanto debe hacerlo el botón disponible (antes de terminar la ejecución de la función).
   if (round >= MAX_ROUND || jugador.vida <= 0) {
