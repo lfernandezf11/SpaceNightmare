@@ -73,6 +73,11 @@ nextBattle.addEventListener('click', () => {
 goToScene6.addEventListener('click', () => {
   showScene('scene-6');
   showPlayerStatus(jugador, getPlayerStatus(jugador));
+  confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
 
   playAgain.addEventListener('click', () => {
     location.reload();
