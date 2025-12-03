@@ -26,7 +26,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* outline: 2px solid red !important; */
+  outline: 2px solid red !important;
 }
 
 html,
@@ -242,12 +242,12 @@ button:hover {
 }
 
 #scene-2 .market-container {
-  height: 52vh;
+  height: 48vh;
   width: 90vw;
 }
 
 #scene-4 .enemies-container {
-  max-height: 65vh;
+  height: 54vh;
   width: 75vw;
 }
 
@@ -299,8 +299,10 @@ button:hover {
 }
 
 .cart-icon.show {
-  animation: show 1.5s; /* La animación dura lo mismo que el setTimeOut antes de eliminar el icon. */
+  animation: show 1.5s;
+  /* La animación dura lo mismo que el setTimeOut antes de eliminar el icon. */
 }
+
 /* Fin de animación */
 
 
@@ -373,29 +375,31 @@ button:hover {
 #scene-5 .battle-container {
   display: block;
   overflow: auto;
-  padding: 1rem;
+  /* padding: 1rem; */
   width: 100vw;
   max-height: auto;
-  overflow-x: hidden; /* Reforzado aquí el overflow-x: hidden del body, puesto que salía un scroll horizontal al animar la entrada */
+  overflow-x: hidden;
+  /* Reforzado aquí el overflow-x: hidden del body, puesto que salía un scroll horizontal al animar la entrada */
 }
+
 #scene-5 #fighters {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
 
-#scene-5 #fighters div{
-  max-width: 25%;
+#scene-5 #fighters div {
+  max-width: 20%;
   display: block;
   align-content: center;
 }
 
 #scene-5 #fighters #versus {
-  max-width: 15%;
+  max-width: 12%;
 }
 
-#scene-5 #fighters img{
-  display:block;
+#scene-5 #fighters img {
+  display: block;
   object-fit: cover;
   width: 100%;
 }
@@ -417,20 +421,21 @@ button:hover {
 
 /* Animación de entrada de contrincantes en la batalla --------------------*/
 /* Posición inicial de los contenedores */
-#player-container { 
-  transform: translateX(100vw); 
+#player-container {
+  transform: translateX(100vw);
 }
 
-#enemy-container  { 
-  transform: translateX(-100vw); 
+#enemy-container {
+  transform: translateX(-100vw);
 }
 
-#player-container.enter { 
-  animation: enterPlayer 1.2s ease-out forwards; /* Forwards asegura que los elementos mantienen el estado final de la animación */
+#player-container.enter {
+  animation: enterPlayer 1.2s ease-out forwards;
+  /* Forwards asegura que los elementos mantienen el estado final de la animación */
 }
 
-#enemy-container.enter  { 
-  animation: enterEnemy 1.2s ease-out forwards; 
+#enemy-container.enter {
+  animation: enterEnemy 1.2s ease-out forwards;
 }
 
 
@@ -446,7 +451,7 @@ button:hover {
 
 #scene-6 .results-container img {
   display: block;
-  max-width: 30%;
+  max-width: 25%;
 }
 
 #scene-6 #rankingValue {
@@ -460,12 +465,13 @@ button:hover {
   margin-bottom: 0.5rem;
 }
 
-#scene-6 #rankingValue #player-pointsEnd, #scene-6 h4 {
+#scene-6 #rankingValue #player-pointsEnd,
+#scene-6 h4 {
   font-family: var(--font-content);
   font-size: 1.2rem;
 }
 
-#scene-6 #rankingValue #player-pointsEnd span, 
+#scene-6 #rankingValue #player-pointsEnd span,
 #scene-6 h4 {
   font-weight: bold;
   color: var(--tertiary-color);
@@ -477,23 +483,140 @@ button:hover {
 }
 
 
+/* Responsive ---------------------------------------------------------------------------*/
+/* Tamaños de pantalla: 
+- 360 píxeles de ancho
+- 720 píxeles de ancho
+- 1024 píxeles de ancho */
 
-@media (max-width: 40rem) {
-  #player-card .columns {
+@media (min-width: 320px) and (max-width: 480px) {
+  body {
+    display: flex;
     flex-direction: column;
   }
 
-  #player-photo {
-    flex: 1 0 auto;
+  h1 {
+    margin: 0 1rem 0 1rem;
   }
-}
 
-@media (width < 640px) {
+  h2 {
+    margin: auto 1rem;
+  }
+
+  /* Inventario*/
   #inventory-container {
-    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    /* de flex a grid */
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columnas */
+    justify-items: center;
+  }
+
+  .item {
+    width: 40vw;
+    height: 40vw;
+  }
+
+  /* Tarjeta jugador */
+  #player-card h2 {
+    font-size: 1.8rem;
+  }
+
+  #player-card {
+    max-width: 92%;
+  }
+
+  #player-photo1,
+  #player-photo3 {
+    flex: 0 0;
+  }
+
+  #player-info .logos img {
+    width: 20%;
+  }
+
+  #player-card .columns {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #player-info {
+    gap: 0.9rem;
+  }
+
+  /* Mercado, enemigos*/
+  #scene-2 .market-container, 
+  #scene-4 .enemies-container {
+    width: 100vw;
+    height: auto;
+  }
+
+  #scene-4 #enemycard-container {
+    height: auto;
+  }
+
+  #scene-5 .battle-container {
+    padding: 1rem;
+  }
+
+  #scene-5 #fighters div {
+    max-width: 25%;
+  }
+
+  #scene-5 #fighters #versus {
+    max-width: 15%;
   }
 }
 
+@media (min-width: 700px) and (max-width: 1024px) {
+  #player-card h2 {
+    font-size: 1.7rem;
+  }
+
+  #player-card {
+    max-width: 85vw;
+  }
+
+  #player-photo1,
+  #player-photo3 {
+    flex: 0 0 40%;
+  }
+
+  #player-info .logos img {
+    width: 15%;
+  }
+
+  #player-card .columns {
+    padding: 0.5rem;
+  }
+
+  #player-info {
+    gap: 0.9rem;
+  }
+
+  #scene-4 .enemies-container {
+    width: 85vw;
+  }
+
+  #scene-5 .battle-container {
+    padding: 1rem;
+  }
+
+  #scene-5 #fighters div {
+    max-width: 35%;
+  }
+
+  #scene-5 #fighters #versus {
+    max-width: 15%;
+  }
+}
+
+
+
+
+
+
+/* Animaciones ----------------------------------------------------------------------------------*/
 @keyframes show {
   0% {
     opacity: 0;
@@ -518,14 +641,14 @@ button:hover {
   }
 }
 
-@keyframes enterPlayer { 
-  to { 
-    transform: translateX(0); 
-  } 
+@keyframes enterPlayer {
+  to {
+    transform: translateX(0);
+  }
 }
 
-@keyframes enterEnemy  { 
-  to { 
-    transform: translateX(0); 
-  } 
+@keyframes enterEnemy {
+  to {
+    transform: translateX(0);
+  }
 }
