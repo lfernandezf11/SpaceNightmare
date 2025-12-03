@@ -26,7 +26,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  outline: 2px solid red !important;
+  /* outline: 2px solid red !important; */
 }
 
 html,
@@ -496,19 +496,19 @@ button:hover {
   }
 
   h1 {
-    margin: 0 1rem 0 1rem;
+    margin: 1rem;
+    text-align: center;
   }
 
   h2 {
-    margin: auto 1rem;
+    padding: 0 1rem 0 1rem;
   }
 
   /* Inventario*/
   #inventory-container {
     display: grid;
-    /* de flex a grid */
+    /* Grid de dos columnas: repeat(2, 1fr)*/
     grid-template-columns: repeat(2, 1fr);
-    /* 2 columnas */
     justify-items: center;
   }
 
@@ -545,27 +545,45 @@ button:hover {
   }
 
   /* Mercado, enemigos*/
-  #scene-2 .market-container, 
+  #scene-2 #discount {
+    text-align: start;
+  }
+  #scene-2 .market-container,
   #scene-4 .enemies-container {
     width: 100vw;
     height: auto;
   }
 
-  #scene-4 #enemycard-container {
-    height: auto;
-  }
-
-  #scene-5 .battle-container {
-    padding: 1rem;
+  /* Batallas */
+  #scene-5 #fighters {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   #scene-5 #fighters div {
-    max-width: 25%;
+    max-width: 60%;
+    align-content: center;
   }
 
   #scene-5 #fighters #versus {
-    max-width: 15%;
+    max-width: 30%;
   }
+
+  #scene-5 .battle-winner {
+    padding: 1rem;
+  }
+
+  /* Ranking */
+  #scene-6 .results-container {
+    margin: auto 1rem;
+  }
+
+  #scene-6 .results-container img {
+    max-width: 80%;
+}
+
 }
 
 @media (min-width: 700px) and (max-width: 1024px) {
