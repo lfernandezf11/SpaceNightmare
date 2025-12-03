@@ -19,24 +19,32 @@ const playerPoints = document.querySelector('#player-points span');
 export function combat(jugador, enemigo) {
   let hpPlayer = jugador.vida;
   let hpEnemy = enemigo.vida;
-  console.log("vida jugador inicial: " + hpPlayer); 
-  console.log("Vida inicial enemigo: " + hpEnemy)
 
   const damagePlayer = jugador.ataqueTotal;
-  console.log("Daño infligido por el jugador: " + damagePlayer)
   const damageEnemy = Math.max(1, enemigo.ataque - jugador.defensaTotal);
-  console.log("Daño infligido por el enemigo: " + damageEnemy)
+
+
 
   let totalDamage = 0; //Acumulador de daño infligido por el enemigo en los turnos que dure la batalla.
+  console.log("Vida inicial, JUGADOR: " + hpPlayer);
+  console.log("Vida inicial, ENEMIGO: " + hpEnemy);
+  console.log("Daño infligido, JUGADOR: " + damagePlayer);
+  console.log("Daño infligido, ENEMIGO: " + damageEnemy);
+  console.log("Daño acumulado durante el combate: " + totalDamage);
 
+  let round = 1;
+  console.log("¡EMPIEZA EL COMBATE!")
   // Bucle de combate: ambos atacan en cada iteración hasta que alguno se queda sin vida.
   while (hpPlayer > 0 && hpEnemy > 0) {
     hpEnemy -= damagePlayer;
-    console.log(hpEnemy)
     hpPlayer -= damageEnemy;
-    console.log(hpPlayer)
     totalDamage += damageEnemy;
-    console.log(totalDamage)
+    round += 1;
+
+    console.log("Ronda " + round)
+    console.log("Vida enemigo: " + hpEnemy)
+    console.log("Vida jugador: " + hpPlayer)
+    console.log("Daño acumulado: " + totalDamage)
   }
 
   // Cálculo de puntos
@@ -80,7 +88,7 @@ export function paintBattle(jugador, enemigo) {
  * @param {string} name - Nombre del ganador del combate.
  * @param {number} plusPoints - Puntos adicionales obtenidos por el jugador.
  */
-function showWinner (name, plusPoints) {
+function showWinner(name, plusPoints) {
   winner.textContent = name;
   playerPoints.textContent = plusPoints;
 }

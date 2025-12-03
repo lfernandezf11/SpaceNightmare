@@ -11,22 +11,19 @@ export const jugador = new Jugador(
   './img/astronaut.png'
 );
 
+
 /**
  * Lista de enemigos disponibles en el juego.
  * Incluye enemigos normales e instancias de Jefe.
  * @type {(Enemigo|Jefe)[]}
  */
 export const bestiario = [
-  // Enemigos normales (pensados para jugador con ~40–60 de vida inicial y 35–45 de ataque)
-  new Enemigo("Parásito Estelar",     26, 80,  "./../img/alien.png"),  // muere en ~2 turnos si el jugador hace 40 dmg
-  new Enemigo("Miriápodo Lúmbrico",   28, 95,  "./../img/insect.png"), // ~2–3 turnos
-  new Enemigo("Serafín del Vacío",    24, 110, "./../img/angel.png"),  // ~3 turnos
-  new Enemigo("Meteorito Ancestral",  32, 100, "./../img/meteor.png"), // ~2–3 turnos
-
-  // Jefe (pensado para jugador con ~50–70 de vida y 40–50 de ataque)
+  new Enemigo("Parásito Estelar", 26, 80, "./../img/alien.png"),
+  new Enemigo("Miriápodo Lúmbrico", 28, 95, "./../img/insect.png"),
+  new Enemigo("Serafín del Vacío", 24, 110, "./../img/angel.png"), 
+  new Enemigo("Meteorito Ancestral", 32, 100, "./../img/meteor.png"), 
   new Jefe("Cthulhu", 40, 180, "./../img/cthulu.png", "Llamada del Abismo", 1.5)
 ];
-
 
 
 /**
