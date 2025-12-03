@@ -8,7 +8,7 @@ import { Producto } from "./../Modules/Producto.js";
  */
 export const jugador = new Jugador(
   'Teniente al Mando F. Welsch',
-  './../../img/astronaut.png'
+  './../img/astronaut.png'
 );
 
 
@@ -18,11 +18,11 @@ export const jugador = new Jugador(
  * @type {Array<Enemigo|Jefe>} 
  */
 export const bestiario = [
-  new Enemigo("Parásito Estelar", 26, 80, "./../../img/alien.png"),
-  new Enemigo("Miriápodo Lúmbrico", 28, 95, "./../../img/insect.png"),
-  new Enemigo("Serafín del Vacío", 24, 110, "./../../img/angel.png"), 
-  new Enemigo("Meteorito Ancestral", 32, 100, "./../../img/meteor.png"), 
-  new Jefe("Cthulhu", 40, 180, "./../../img/cthulu.png", "Llamada del Abismo", 1.5)
+  new Enemigo("Parásito Estelar", 26, 80, "./../img/alien.png"),
+  new Enemigo("Miriápodo Lúmbrico", 28, 95, "./../img/insect.png"),
+  new Enemigo("Serafín del Vacío", 24, 110, "./../img/angel.png"), 
+  new Enemigo("Meteorito Ancestral", 32, 100, "./../img/meteor.png"), 
+  new Jefe("Cthulhu", 40, 180, "./../img/cthulu.png", "Llamada del Abismo", 1.5)
 ];
 
 
