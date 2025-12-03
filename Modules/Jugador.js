@@ -87,7 +87,7 @@ export class Jugador {
     get vidaInicial() {
         const totalInventario = this.inventario.reduce(
             (total, item) => total + (item.bonus.vida || 0),
-            0
+            1
         );
         return totalInventario > this.vidaMaxima ? this.vidaMaxima : totalInventario;
     }
