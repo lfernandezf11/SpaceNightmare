@@ -59,7 +59,7 @@ header {
 
 h1 {
   padding-top: 1rem;
-  color: whitesmoke;
+  color: var(--primary-color);
 }
 
 button {
@@ -81,7 +81,7 @@ button {
 
 button:hover {
   background-color: yellow;
-  transform: translateY(-0.15rem) scale(1.1);
+  transform: translateY(-0.25rem) scale(1.1);
   box-shadow: 0 0 0.9rem rgba(255, 255, 0, 0.8);
   /* halo */
 }
@@ -121,7 +121,8 @@ button:hover {
   border-radius: 0.4rem;
   width: 100px;
   height: 100px;
-  display: flex; /* Obligatorio para alinear el contenido */
+  display: flex;
+  /* Obligatorio para alinear el contenido */
   justify-content: center;
 }
 
@@ -130,9 +131,14 @@ button:hover {
   max-height: 100%;
   max-width: 100%;
   /* object-fit: contain; */
+  transition: transform 0.3s ease;
 }
 
-/* Escena inicial y escena 3 ------------------------------------------------- */
+.item img:hover {
+  transform: scale(1.15);
+}
+
+/* Escenas con tarjeta de personaje: Inicial (escena 1) y Jugador con Inventario (escena 3) ------------------------------------------------- */
 #player-card {
   margin-top: 1rem;
   border-radius: 1rem;
@@ -160,12 +166,14 @@ button:hover {
   padding: 1rem;
 }
 
-#player-photo1, #player-photo3 {
+#player-photo1,
+#player-photo3 {
   flex: 0 0 45%;
   align-content: center;
 }
 
-#player-photo1 img, #player-photo3 img {
+#player-photo1 img,
+#player-photo3 img {
   width: 100%;
   height: auto;
   object-fit: cover;
@@ -215,71 +223,8 @@ button:hover {
 }
 
 
-
-/* Responsive: columnas a una sola si es estrecho */
-@media (max-width: 40rem) {
-  #player-card .columns {
-    flex-direction: column;
-  }
-
-  #player-photo {
-    flex: 1 0 auto;
-  }
-}
-
-
-
-
-
-
-
-
-/* --------------- CONTENIDO DE LAS ESCENAS --------------- */
-
-/* .row-1, .row-2, .row-3{
-  padding: 32px;
-  background: var(--primary-color);
-} */
-
-/* #scene-1 .row-1{
-  height: 40%;
-  display: flex;
-  justify-content: space-between;
-  background: var(--secondary-color);
-} */
-
-/* #scene-1 .row-2, #scene-3 .row-2{
-  height: 40%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 8px;
-} */
-/* 
-  #scene-1 .row-2:nth-child(3), 
-  #scene-1 .row-2:nth-child(4),
-  #scene-3 .row-2:nth-child(3), 
-  #scene-3 .row-2:nth-child(4){
-    grid-row-start: 2;
-  } */
-
-/* #scene-1 .stats, #scene-3 .stats{
-    background: var(--secondary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  #scene-1 .row-3,  #scene-3 .row-3{
-    height: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  } */
-
-
-/* Escena del Mercado ------------------------------*/
-#scene-2 .scene-container>h2:first-of-type {
+/* Escenas con grid-cards: Mercado (escena 2) y Enemigos (escena 4) ------------------------------*/
+.scene-container>h2:first-of-type {
   color: var(--primary-color);
   font-weight: 400;
 }
@@ -289,22 +234,33 @@ button:hover {
   color: var(--tertiary-color);
 }
 
-#scene-2 .market-container {
-  height: 52vh;
-  width: 90vw;
+#scene-2 .market-container,
+#scene-4 .enemies-container {
   display: block;
   overflow: auto;
   padding: 1rem;
 }
 
-#scene-2 #card-container {
+#scene-2 .market-container {
+  height: 48vh;
+  width: 90vw;
+}
+
+#scene-4 .enemies-container {
+  height: 54vh;
+  width: 75vw;
+}
+
+#scene-2 #card-container,
+#scene-4 #enemycard-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 1rem;
   justify-content: center;
 }
 
-#scene-2 .card {
+#scene-2 .card,
+#scene-4 .card {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -325,9 +281,42 @@ button:hover {
   transition: box-shadow .25s ease, transform .2s ease;
 }
 
+/* Animación de compra de la escena del Mercado (click en botón añadir) --------------------*/
+#scene-2 .card button {
+  position: relative;
+}
+
+#scene-2 .card .cart-icon {
+  /* Posicionamiento del icon respecto al botón */
+  position: absolute;
+  right: 35%;
+  bottom: 10%;
+  /* transform: translate(-50%, -50%); Con un top 50 y un left 50, supuestamente el translate te lo coloca en la mitad exacta del parent */
+  font-size: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.cart-icon.show {
+  animation: show 1.5s;
+  /* La animación dura lo mismo que el setTimeOut antes de eliminar el icon. */
+}
+
+/* Fin de animación */
+
+
+#scene-2 .card:hover,
+#scene-4 .card:hover {
+  transform: translate(2px, -4px);
+  /* derecha y arriba */
+  box-shadow:
+    0 0 2.2rem rgba(210, 222, 50, 0.7),
+    0 0 0.25rem rgba(255, 255, 255, 0.6);
+}
+
 #scene-2 .card.selected {
   background-color: var(--tertiary-color);
-  box-shadow: none;
 }
 
 #scene-2 .card.selected button {
@@ -339,16 +328,26 @@ button:hover {
   border: 3px solid var(--accent-color);
 }
 
-#scene-2 .card img {
+#scene-2 .card img,
+#scene-4 .card img {
   display: block;
-  width: 70%;
-  max-width: 8rem;
   aspect-ratio: 1 / 1;
   object-fit: contain;
   margin: 0 auto 0 auto;
 }
 
-#scene-2 .card .small {
+#scene-2 .card img {
+  width: 70%;
+  max-width: 8rem;
+}
+
+#scene-4 .card img {
+  width: 80%;
+  max-width: 12rem;
+}
+
+#scene-2 .card .small,
+#scene-4 .card .small {
   font-family: var(--font-content);
   text-transform: capitalize;
   font-weight: 600;
@@ -359,10 +358,315 @@ button:hover {
   color: var(--accent-color);
 }
 
+#scene-4 .card .boss {
+  font-weight: bold;
+  color: var(--accent-color);
+}
+
+#scene-4 .card .attackPlus {
+  font-family: var(--font-content);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent-color)
+}
 
 
-@media (width < 640px) {
+/* Escena de Batalla (escena 5) -----------------------------------------------------------*/
+#scene-5 .battle-container {
+  display: block;
+  overflow: auto;
+  /* padding: 1rem; */
+  width: 100vw;
+  max-height: auto;
+  overflow-x: hidden;
+  /* Reforzado aquí el overflow-x: hidden del body, puesto que salía un scroll horizontal al animar la entrada */
+}
+
+#scene-5 #fighters {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#scene-5 #fighters div {
+  max-width: 20%;
+  display: block;
+  align-content: center;
+}
+
+#scene-5 #fighters #versus {
+  max-width: 12%;
+}
+
+#scene-5 #fighters img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+#scene-5 .battle-winner {
+  padding-bottom: 1rem;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+}
+
+#scene-5 .battle-winner span {
+  font-family: var(--font-content);
+}
+
+#scene-5 .hidden {
+  display: none;
+  pointer-events: none;
+}
+
+/* Animación de entrada de contrincantes en la batalla --------------------*/
+/* Posición inicial de los contenedores */
+#player-container {
+  transform: translateX(100vw);
+}
+
+#enemy-container {
+  transform: translateX(-100vw);
+}
+
+#player-container.enter {
+  animation: enterPlayer 1.2s ease-out forwards;
+  /* Forwards asegura que los elementos mantienen el estado final de la animación */
+}
+
+#enemy-container.enter {
+  animation: enterEnemy 1.2s ease-out forwards;
+}
+
+
+/* Escena de Ranking ----------------------------------------------------------------*/
+#scene-6 .results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 80vh;
+  gap: 1rem;
+  color: var(--primary-color);
+}
+
+#scene-6 .results-container img {
+  display: block;
+  max-width: 25%;
+}
+
+#scene-6 #rankingValue {
+  line-height: 2rem;
+  text-align: center;
+}
+
+#scene-6 #rankingValue #player-nameEnd {
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+#scene-6 #rankingValue #player-pointsEnd,
+#scene-6 h4 {
+  font-family: var(--font-content);
+  font-size: 1.2rem;
+}
+
+#scene-6 #rankingValue #player-pointsEnd span,
+#scene-6 h4 {
+  font-weight: bold;
+  color: var(--tertiary-color);
+}
+
+#scene-6 h4 span {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+
+/* Responsive ---------------------------------------------------------------------------*/
+/* Tamaños de pantalla: 
+- 360 píxeles de ancho
+- 720 píxeles de ancho
+- 1024 píxeles de ancho */
+
+@media (min-width: 320px) and (max-width: 480px) {
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1 {
+    margin: 1rem;
+    text-align: center;
+  }
+
+  h2 {
+    padding: 0 1rem 0 1rem;
+  }
+
+  /* Inventario*/
   #inventory-container {
-    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    /* Grid de dos columnas: repeat(2, 1fr)*/
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+
+  .item {
+    width: 40vw;
+    height: 40vw;
+  }
+
+  /* Tarjeta jugador */
+  #player-card h2 {
+    font-size: 1.8rem;
+  }
+
+  #player-card {
+    max-width: 92%;
+  }
+
+  #player-photo1,
+  #player-photo3 {
+    flex: 0 0;
+  }
+
+  #player-info .logos img {
+    width: 20%;
+  }
+
+  #player-card .columns {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #player-info {
+    gap: 0.9rem;
+  }
+
+  /* Mercado, enemigos*/
+  #scene-2 #discount {
+    text-align: start;
+  }
+  #scene-2 .market-container,
+  #scene-4 .enemies-container {
+    width: 100vw;
+    height: auto;
+  }
+
+  /* Batallas */
+  #scene-5 #fighters {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #scene-5 #fighters div {
+    max-width: 60%;
+    align-content: center;
+  }
+
+  #scene-5 #fighters #versus {
+    max-width: 30%;
+  }
+
+  #scene-5 .battle-winner {
+    padding: 1rem;
+  }
+
+  /* Ranking */
+  #scene-6 .results-container {
+    margin: auto 1rem;
+  }
+
+  #scene-6 .results-container img {
+    max-width: 80%;
+}
+
+}
+
+@media (min-width: 700px) and (max-width: 1024px) {
+  #player-card h2 {
+    font-size: 1.7rem;
+  }
+
+  #player-card {
+    max-width: 85vw;
+  }
+
+  #player-photo1,
+  #player-photo3 {
+    flex: 0 0 40%;
+  }
+
+  #player-info .logos img {
+    width: 15%;
+  }
+
+  #player-card .columns {
+    padding: 0.5rem;
+  }
+
+  #player-info {
+    gap: 0.9rem;
+  }
+
+  #scene-4 .enemies-container {
+    width: 85vw;
+  }
+
+  #scene-5 .battle-container {
+    padding: 1rem;
+  }
+
+  #scene-5 #fighters div {
+    max-width: 35%;
+  }
+
+  #scene-5 #fighters #versus {
+    max-width: 15%;
+  }
+}
+
+
+
+
+
+
+/* Animaciones ----------------------------------------------------------------------------------*/
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(0);
+    filter: blur(2px);
+  }
+
+  20% {
+    opacity: 1;
+    transform: scale(1.15) translateY(-50px);
+    filter: none;
+  }
+
+  70% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(0.9) translateY(0);
+  }
+}
+
+@keyframes enterPlayer {
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes enterEnemy {
+  to {
+    transform: translateX(0);
   }
 }

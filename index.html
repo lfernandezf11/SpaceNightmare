@@ -2,6 +2,7 @@
 <html lang="es">
 
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="UTF-8" />
   <title>Aventura en el Reino de JS</title>
   <link rel="stylesheet" href="styles.css">
@@ -10,7 +11,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Science+Gothic:wght@100..900&display=swap"
     rel="stylesheet">
-  <script type="module" src='./Main.js' defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <script type="module" src='./src/Main.js' defer></script>
 </head>
 
 <body>
@@ -19,14 +21,15 @@
   </header>
 
   <main>
+    <!-- Escena Inicial ------------------------------------------------------------------------>
     <div id="scene-1" class="scene">
       <div class="scene-container">
         <div id="player-card">
           <h2>TRIPULANTE AUTORIZADO</h2>
-          <div class="columns">
-            <div id="player-photo1">
 
-            </div>
+          <div class="columns">
+            <div id="player-photo1"></div>
+
             <div id="player-info">
               <h3 id="player-name1"></h3>
               <div class="stats">
@@ -44,35 +47,38 @@
             </div>
           </div>
         </div>
+
         <div class="row-3">
           <button id="goToScene2">Continuar</button>
         </div>
       </div>
     </div>
 
-    <div id="scene-2" class="scene active">
+    <!-- Escena Mercado ------------------------------------------------------------------------>
+    <div id="scene-2" class="scene">
       <div class="scene-container">
-        <h2 >Elige bien qué compras: tu vida depende de ello__</h2>
+        <h2>Elige bien qué compras: tu vida depende de ello__</h2>
         <h2 id="discount"></h2>
-        <div class="market-container">
-          <div id="card-container">
 
-          </div>
+        <div class="market-container">
+          <div id="card-container"></div>
         </div>
+
         <div class="row-3">
           <button id="goToScene3">Comprar</button>
         </div>
       </div>
     </div>
 
+    <!-- Escena Jugador con Inventario Actualizado ------------------------------------------------------------------------>
     <div id="scene-3" class="scene">
       <div class="scene-container">
         <div id="player-card">
           <h2>TRIPULANTE AUTORIZADO</h2>
-          <div class="columns">
-            <div id="player-photo3">
 
-            </div>
+          <div class="columns">
+            <div id="player-photo3"></div>
+
             <div id="player-info">
               <h3 id="player-name3"></h3>
               <div class="stats">
@@ -90,33 +96,84 @@
             </div>
           </div>
         </div>
+
         <div class="row-3">
           <button id="goToScene4">Continuar</button>
         </div>
       </div>
     </div>
 
+    <!-- Escena Enemigos ------------------------------------------------------------------------>
+    <div id="scene-4" class="scene">
+      <div class="scene-container">
+        <h2>¡Cuidado! Tus enemigos aguardan</h2>
+
+        <div class="enemies-container">
+          <div id="enemycard-container"></div>
+        </div>
+
+        <div class="row-3">
+          <button id="goToScene5">Jugar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Escena Batallas ------------------------------------------------------------------------>
+    <div id="scene-5" class="scene">
+      <div class="scene-container">
+        <h2>¡Que comience la batalla!</h2>
+
+        <div class="battle-container">
+          <div id="fighters">
+            <div id="player-container" class="enter"></div>
+            <div id="versus"><img src="./img/versus.png" alt="" srcset=""></div>
+            <div id="enemy-container" class="enter"></div>
+          </div>
+        </div>
+
+        <div class="battle-winner">
+          <p id="winner-name">Ganador: <span></span></p>
+          <p id="player-points">Puntos ganados: <span></span></p>
+        </div>
+
+        <div class="row-3">
+          <button id="nextBattle">Siguiente batalla</button>
+          <button id="goToScene6" class="hidden disabled">Finalizar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Escena Ranking ---------------------------------------------------------------------------->
+    <div id="scene-6" class="scene">
+      <div class="scene-container">
+        <h2>Tus resultados:</h2>
+
+        <div class="results-container">
+          <img>
+          <div id="rankingValue">
+            <p id="player-nameEnd">Teniente Ripley</p>
+            <p id="player-pointsEnd">Has ganado un total de <span></span> puntos.</p>
+            <h4>Eres una jugadora <span></span>.</h4>
+          </div>
+        </div>
+
+        <div class="row-3">
+          <button id="playAgain">Volver a jugar</button>
+        </div>
+      </div>
+    </div>
+
   </main>
 
+  <!-- Inventario ------------------------------------------------------------------------>
   <footer>
     <div id="inventory-container">
-      <div class="item" id="item1">
-
-      </div>
-      <div class="item" id="item2">
-
-      </div>
-      <div class="item" id="item3">
-
-      </div>
-      <div class="item" id="item4">
-      </div>
-      <div class="item" id="item5">
-
-      </div>
-      <div class="item" id="item6">
-
-      </div>
+      <div class="item" id="item1"></div>
+      <div class="item" id="item2"></div>
+      <div class="item" id="item3"></div>
+      <div class="item" id="item4"></div>
+      <div class="item" id="item5"></div>
+      <div class="item" id="item6"></div>
     </div>
   </footer>
 </body>
