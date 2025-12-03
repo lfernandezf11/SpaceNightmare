@@ -79,6 +79,15 @@ export function groupBy(array, keyFunc) {
 }
 
 
+/**
+ * Reinicia una animación CSS basada en una clase.
+ * Quita la clase de animación, fuerza un reflow leyendo `offsetWidth`
+ * y vuelve a añadir la clase para que la animación se ejecute de nuevo.
+ *
+ * @param {Element} DOMnode - Nodo del DOM con la animación.
+ * @param {string} animationClass - Clase CSS que activa la animación.
+ * @returns {void}
+ */
 export function reloadAnimation(DOMnode, animationClass) {
   DOMnode.classList.remove(animationClass);
   void DOMnode.offsetWidth;
