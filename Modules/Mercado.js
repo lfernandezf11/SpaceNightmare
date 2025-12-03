@@ -74,13 +74,13 @@ export function buyProduct(product, card) {
 
             //No es necesario, al pulsar 'Retirar' la animación ya se ha producido y el icon tiene opacity 0, no estorba visualmente. Lo hacemos para limpiar el DOM.
             setTimeout(() => { if(btn.contains(icon)) btn.removeChild(icon) }, 1500);
-
+        }
         } else { // Si el producto NO está seleccionado (!isSelected) pero existía en el inventario, se elimina.
             if (i !== -1) selected.splice(i, 1);
         }
         paintInventory(selected); //Pinta el inventario con los objetos seleccionados antes de pulsar 'Comprar'.
     }
-}
+
 
     const inventoryEl = document.getElementById('inventory-container');
     const slots = Array.from(inventoryEl.querySelectorAll('.item'));

@@ -1,5 +1,5 @@
 import { showScene, mostrarStats } from './Utils/utils.js';
-import { Enemigo } from './Modules/Enemigo.js';
+import { Jugador } from './Modules/Jugador.js';
 import { selected, showCatalog, paintInventory } from './Modules/Mercado.js';
 import { showBestiario, getRandomEnemy } from './Modules/Bestiario.js';
 import { jugador } from './Utils/constants.js';
@@ -23,10 +23,13 @@ goToScene2.addEventListener('click', () => showScene('scene-2'));
 showCatalog();
 
 goToScene3.addEventListener('click', () => {
-  jugador.inventario = [...selected];
+  // Generamos el inventario del jugador a partir de los productos seleccionados. 
+  // Lo que usábamos antes (jugador.inventario = [...selected]) no clonaba los objetos, los copiaba manteniendo la referencia original.
+  selected.forEach(p => jugador.aniadirProducto(p)) 
   showScene('scene-3');
   jugador.vida = jugador.vidaInicial; //Recalculamos la vida inicial una vez lleno el inventario.
   mostrarStats(jugador, 3);
+  console.log(jugador.inventario)
   paintInventory(jugador.inventario);
 });
 
@@ -36,7 +39,6 @@ goToScene4.addEventListener('click', () => {
   showBestiario();
 });
 
-// Variable para almacenar la 
 const MAX_ROUND = 3; // Número máximo de batalla
 let round = 0; // Ronda de batalla actual. La declaramos a nivel global porque la necesitan tanto el listener del cambio
                // de escena como el listener de avance de ronda. 

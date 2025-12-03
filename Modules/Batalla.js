@@ -23,28 +23,27 @@ export function combat(jugador, enemigo) {
   const damagePlayer = jugador.ataqueTotal;
   const damageEnemy = Math.max(1, enemigo.ataque - jugador.defensaTotal);
 
-
-
   let totalDamage = 0; //Acumulador de daño infligido por el enemigo en los turnos que dure la batalla.
+
   console.log("Vida inicial, JUGADOR: " + hpPlayer);
   console.log("Vida inicial, ENEMIGO: " + hpEnemy);
   console.log("Daño infligido, JUGADOR: " + damagePlayer);
   console.log("Daño infligido, ENEMIGO: " + damageEnemy);
   console.log("Daño acumulado durante el combate: " + totalDamage);
-
   let round = 1;
   console.log("¡EMPIEZA EL COMBATE!")
+
   // Bucle de combate: ambos atacan en cada iteración hasta que alguno se queda sin vida.
   while (hpPlayer > 0 && hpEnemy > 0) {
     hpEnemy -= damagePlayer;
     hpPlayer -= damageEnemy;
     totalDamage += damageEnemy;
-    round += 1;
-
-    console.log("Ronda " + round)
+    
+    console.log("RONDA " + round + "----------------------")
     console.log("Vida enemigo: " + hpEnemy)
     console.log("Vida jugador: " + hpPlayer)
     console.log("Daño acumulado: " + totalDamage)
+    round += 1;
   }
 
   // Cálculo de puntos
