@@ -15,7 +15,7 @@ export const jugador = new Jugador(
 /**
  * Lista de enemigos disponibles en el juego.
  * Incluye enemigos normales e instancias de Jefe.
- * @type {(Enemigo|Jefe)[]}
+ * @type {Array<Enemigo|Jefe>} 
  */
 export const bestiario = [
   new Enemigo("Parásito Estelar", 26, 80, "./../../img/alien.png"),

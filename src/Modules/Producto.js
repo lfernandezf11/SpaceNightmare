@@ -9,6 +9,12 @@ export class Producto {
   precio;
   rareza;
   tipo;
+  /**
+ * @typedef {Object} Bonus
+ * @property {number} [ataque]  - Bonificación de ataque (opcional).
+ * @property {number} [defensa] - Bonificación de defensa (opcional).
+ * @property {number} [vida]    - Bonificación de vida (opcional).
+ */
   bonus;
   image;
 
@@ -24,7 +30,7 @@ export class Producto {
    * @param {number} precio - Precio original del producto.
    * @param {string} rareza - Nivel de rareza del producto.
    * @param {string} tipo - Tipo del producto ('Ataque', 'Defensa', etc.).
-   * @param {{ataque?: number, defensa?: number, vida?: number}} bonus - Bonificación del producto.
+   * @param {Bonus}} bonus - Bonificación del producto.
    * @param {string} image - Ruta de la imagen asociada al producto.
    */
   constructor(nombre, precio, rareza, tipo, bonus, image) {

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: Modules/Bestiario.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,49 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: Modules/Bestiario.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { bestiario } from '../Utils/constants.js';
 
+/**
+ * Muestra todas las cartas de enemigos del bestiario en pantalla.
+ * Limpia el contenedor y luego genera una tarjeta por enemigo.
+ *
+ * @returns {void}
+ */
+export function showBestiario() {
+  const container = document.getElementById('enemycard-container');
+  container.innerHTML = '';
 
-    <h3> </h3>
+  bestiario.forEach(enemigo => {
+    const card = document.createElement('div');
+    card.classList.add('card'); // reutiliza estilos de card si quieres
 
+    card.innerHTML = enemigo.presentar();
 
+    container.appendChild(card);
+  });
+}
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
+/**
+ * Devuelve un enemigo aleatorio del bestiario.
+ *
+ * @returns {Enemigo|Jefe} Enemigo seleccionado aleatoriamente.
+ */
+export function getRandomEnemy() {
+  let index = Math.floor(Math.random() * bestiario.length);
+  return bestiario[index];
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
