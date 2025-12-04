@@ -11,6 +11,7 @@
 import { Producto } from './Producto.js';
 import { productos } from './../Utils/constants.js';
 import { groupBy } from './../Utils/utils.js';
+import { jugador } from './../Utils/constants.js';
 
 let rarezaSelected = null;   // Variable en la que guardaremos la rareza elegida antes de aplicar el descuento aleatorio sobre el mercado.
 let porcentajeSelected = null; // Lo mismo pero para el porcentaje
@@ -86,17 +87,21 @@ export function buyProduct(product, card) {
   const btn = card.querySelector('button');
   const isSelected = card.classList.toggle('selected');    // devuelve true si la clase queda aplicada tras el toggle
   const i = selected.findIndex(p => p.id === product.id); // índice del producto dentro de selected (si ya estaba), -1 si no.
+  const dinero = document.getElementById('dinero');
 
   btn.textContent = isSelected ? 'Retirar' : 'Añadir';
 
   if (isSelected) {
-    if (selected.length >= MAX_SELECTED) {
+    if (selected.length >= MAX_SELECTED || jugador.dinero - product.precio < 0) {
       card.classList.remove('selected'); // revertimos el toggle
       btn.textContent = 'Añadir';
       return;
     }
-    if (i === -1) selected.push(product);
-
+    if (i === -1 && (jugador.dinero - product.precio >=0) ) {
+      selected.push(product);
+      jugador.dinero -= product.precio;
+      dinero.textContent = jugador.dinero + "monedas";
+    }
     // Sólo se genera la animación del icono cuando se confirma que el artículo puede añadirse al inventario.
     if (!card.querySelector('.cart-icon')) {
       const icon = document.createElement('span');
@@ -105,85 +110,92 @@ export function buyProduct(product, card) {
       btn.appendChild(icon); //El icon como nodo hijo del botón para situarlo con position:absolute respecto a él.
 
       //No es necesario, al pulsar 'Retirar' la animación ya se ha producido y el icon tiene opacity 0, no estorba visualmente. Lo hacemos para limpiar el DOM.
-      setTimeout(() => { if(btn.contains(icon)) btn.removeChild(icon) }, 1500);
+      setTimeout(() => { if (btn.contains(icon)) btn.removeChild(icon) }, 1500);
     }
   } else { // Si el producto NO está seleccionado (!isSelected) pero existía en el inventario, se elimina.
-    if (i !== -1) selected.splice(i, 1);
+    if (i !== -1) {
+      selected.splice(i, 1);
+      jugador.dinero += product.precio;
+      dinero.textContent = jugador.dinero + 'monedas';
+    }
+    
   }
   paintInventory(selected); //Pinta el inventario con los objetos seleccionados antes de pulsar 'Comprar'.
 }
 
-// Contenedor y slots del inventario mostrado en la escena de mercado.
-const inventoryEl = document.getElementById('inventory-container');
-const slots = Array.from(inventoryEl.querySelectorAll('.item'));
 
 
-/**
- * Pinta una lista de productos en los slots del inventario de la tienda.
- * Cada producto ocupa un slot en orden; los slots sobrantes se vacían.
- *
- * @param {Producto[]} list - Lista de productos a mostrar.
- */
-export function paintInventory(list) {
-  // Rellena cada slot con el producto correspondiente
-  for (let i = 0; i < slots.length; i++) {
-    const slot = slots[i];
-    const prod = list[i]; // undefined: si no hay más productos, deja el slot vacío
+  // Contenedor y slots del inventario mostrado en la escena de mercado.
+  const inventoryEl = document.getElementById('inventory-container');
+  const slots = Array.from(inventoryEl.querySelectorAll('.item'));
 
-    slot.innerHTML = ''; // Estado inicial del slot.
-    if (prod) {
-      slot.innerHTML = prod.mostrarInfoReduced();
+
+  /**
+   * Pinta una lista de productos en los slots del inventario de la tienda.
+   * Cada producto ocupa un slot en orden; los slots sobrantes se vacían.
+   *
+   * @param {Producto[]} list - Lista de productos a mostrar.
+   */
+  export function paintInventory(list) {
+    // Rellena cada slot con el producto correspondiente
+    for (let i = 0; i < slots.length; i++) {
+      const slot = slots[i];
+      const prod = list[i]; // undefined: si no hay más productos, deja el slot vacío
+
+      slot.innerHTML = ''; // Estado inicial del slot.
+      if (prod) {
+        slot.innerHTML = prod.mostrarInfoReduced();
+      }
     }
   }
-}
 
 
-/**
- * Filtra los productos según su rareza.
- * @param {string} rareza - Rareza que se desea buscar (por ejemplo: "Épica", "Rara").
- * @returns {Producto[]} Lista de productos que coinciden con la rareza indicada.
- */
-export function filtrarPorRareza(rareza) { // No hace falta introducir `productos`, puesto que se exporta como constante y puede accederse a ella desde fuera de la clase.
-  return productos.filter(producto => producto.rareza === rareza);
-}
+  /**
+   * Filtra los productos según su rareza.
+   * @param {string} rareza - Rareza que se desea buscar (por ejemplo: "Épica", "Rara").
+   * @returns {Producto[]} Lista de productos que coinciden con la rareza indicada.
+   */
+  export function filtrarPorRareza(rareza) { // No hace falta introducir `productos`, puesto que se exporta como constante y puede accederse a ella desde fuera de la clase.
+    return productos.filter(producto => producto.rareza === rareza);
+  }
 
 
-/**
- * Aplica un descuento a todos los productos de una rareza específica
- * sobre la copia `productosCopy`, y guarda la rareza y el porcentaje
- * para poder mostrarlos en la interfaz.
- *
- * @param {string} rareza - Rareza a la que se aplicará el descuento.
- * @param {number} porcentaje - Porcentaje de descuento (entre 0 y 100).
- */
-export function aplicarDescuentoRareza(rareza, porcentaje) {
-  //Almacenamos la rareza y el porcentaje aleatorios aquí, para poder marcar los productos con descuento en la escena 2
-  rarezaSelected = rareza;
-  porcentajeSelected = porcentaje;
-  return productosCopy.forEach(producto =>
-    producto.rareza === rareza ? producto.aplicarDescuento(porcentaje) : producto
-  );
-}
+  /**
+   * Aplica un descuento a todos los productos de una rareza específica
+   * sobre la copia `productosCopy`, y guarda la rareza y el porcentaje
+   * para poder mostrarlos en la interfaz.
+   *
+   * @param {string} rareza - Rareza a la que se aplicará el descuento.
+   * @param {number} porcentaje - Porcentaje de descuento (entre 0 y 100).
+   */
+  export function aplicarDescuentoRareza(rareza, porcentaje) {
+    //Almacenamos la rareza y el porcentaje aleatorios aquí, para poder marcar los productos con descuento en la escena 2
+    rarezaSelected = rareza;
+    porcentajeSelected = porcentaje;
+    return productosCopy.forEach(producto =>
+      producto.rareza === rareza ? producto.aplicarDescuento(porcentaje) : producto
+    );
+  }
 
 
-/**
- * Busca un producto por su nombre exacto dentro de la lista original `productos`.
- *
- * @param {string} nombre - Nombre del producto a buscar (case-insensitive).
- * @returns {Producto|null} La primera coincidencia (objeto Producto) o `null` si no existe.
- */
-export function buscarProducto(nombre) { //Buscamos sobre el array original porque no se realizan modificaciones
-  return productos.find(producto => producto.nombre.toLowerCase() === nombre.toLowerCase()) || null;
-}
+  /**
+   * Busca un producto por su nombre exacto dentro de la lista original `productos`.
+   *
+   * @param {string} nombre - Nombre del producto a buscar (case-insensitive).
+   * @returns {Producto|null} La primera coincidencia (objeto Producto) o `null` si no existe.
+   */
+  export function buscarProducto(nombre) { //Buscamos sobre el array original porque no se realizan modificaciones
+    return productos.find(producto => producto.nombre.toLowerCase() === nombre.toLowerCase()) || null;
+  }
 
 
-/**
- * Devuelve el HTML de la información detallada de un producto,
- * delegando en el método `mostrarInfo` de la clase Producto.
- *
- * @param {Producto} producto - Instancia del producto
- * @returns {string} Información detallada del producto
- */
-export function mostrarProducto(producto) {
-  return producto.mostrarInfo();
-}
+  /**
+   * Devuelve el HTML de la información detallada de un producto,
+   * delegando en el método `mostrarInfo` de la clase Producto.
+   *
+   * @param {Producto} producto - Instancia del producto
+   * @returns {string} Información detallada del producto
+   */
+  export function mostrarProducto(producto) {
+    return producto.mostrarInfo();
+  }

@@ -22,6 +22,32 @@
   </header>
 
   <main>
+<!-- Escena de registro----------------------------------------------------------------- -->
+<!-- Pantalla de registro -->
+
+<div id="scene-0" class="scene">
+  <div class="form-container">
+    <form name="registro" id="registro" action="#" method="post">
+      <h2>Registro de Jugador</h2>
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+    
+        <label for="ataque">Ataque</label>
+        <input type="number" id="ataque" name="ataque" value="0" step="1" required>
+
+        <label for="defensa">Defensa</label>
+        <input type="number" id="defensa" name="defensa" value="0" step="1" required>
+
+        <label for="vida">Vida</label>
+        <input type="number" id="vida" name="vida" min="100" step="1" value="100" required>
+
+        <button id="crearJugador" type="submit">Crear Jugador</button>
+      </div>
+      <p id="messageReg" class="message"></p>
+    </form>
+    </div>
+  </div>
+
     <!-- Escena Inicial ------------------------------------------------------------------------>
     <div id="scene-1" class="scene">
       <div class="scene-container">
@@ -60,6 +86,7 @@
       <div class="scene-container">
         <h2>Elige bien qué compras: tu vida depende de ello__</h2>
         <h2 id="discount"></h2>
+       
 
         <div class="market-container">
           <div id="card-container"></div>
@@ -67,8 +94,10 @@
 
         <div class="row-3">
           <button id="goToScene3">Comprar</button>
+          <h3 id="dinero">hola</h3>
         </div>
       </div>
+       
     </div>
 
     <!-- Escena Jugador con Inventario Actualizado ------------------------------------------------------------------------>

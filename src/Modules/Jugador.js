@@ -8,24 +8,30 @@ import { Producto } from './Producto.js';
  */
 export class Jugador {
     nombre;
+    ataque;
+    defensa;
     avatar;
     puntos;
     inventario;
     vidaMaxima;
     vida;
+    dinero;
 
     /**
      * Crea una nueva instancia de Jugador.
      * @param {string} nombre - Nombre del jugador.
      * @param {string} avatar - Ruta del avatar del jugador.
      */
-    constructor(nombre, avatar) {
+    constructor(nombre, ataque, defensa, avatar, vida) {
         this.nombre = nombre;
+        this.ataque = ataque;
+        this.defensa = defensa;
         this.avatar = avatar;
         this.puntos = 0; // Marcador de puntuación acumulada a lo largo de la partida.
         this.inventario = []; // Colección de objetos equipados por el jugador.
         this.vidaMaxima = 80;
-        this.vida = this.vidaMaxima;
+        this.vida = vida;
+        this.dinero = 500;
     }
 
 
@@ -69,6 +75,11 @@ export class Jugador {
     get ataqueTotal() {
         return this.inventario.reduce((total, item) => total + (item.bonus.ataque || 0), 0);
     }
+
+    get dinero() {
+        return this.dinero;
+    }
+
 
     /**
      * Calcula el total de defensa del jugador basado en los bonus de sus ítems.

@@ -67,7 +67,7 @@ export class Producto {
             <p><strong>${this.nombre}</strong><br>
             <span class="small">${this.rareza}<br>
             ${JSON.stringify(this.bonus).replace(/[{}""]/g, '').replace(':', ': ')}</span><br> 
-            <span class="price">${EUR.format(this.precio)}</span><br></p>`;
+            <span class="price">${(this.precio)} monedas</span><br></p>`;
   }
 
   /**

@@ -68,11 +68,18 @@ export function combat(jugador, enemigo) {
     winnerName = jugador.nombre;
 
     // Calcula la puntuación base y aplica multiplicador si el enemigo es un Jefe.
-    let base = 100 + totalDamage;
-    points = enemigo instanceof Jefe
-      ? (base * (enemigo.multiplicadorDanio ?? 1))
-      : base;
+    console.log(jugador.dinero + "monedas antes")
+    jugador.dinero = enemigo instanceof Jefe
+    ? jugador.dinero + 10
+    : jugador.dinero + 5;
+    console.log(jugador.dinero + "monedas después.")
 
+    let base = 100 + totalDamage;
+    console.log(base + " puntos de base.")
+    points = enemigo instanceof Jefe
+      ? (base * (enemigo.multiplicadorDanio ?? 1)) + jugador.dinero
+      : base + jugador.dinero;
+    console.log(points + " puntos más dinero.")
     // Suma los puntos al jugador y ajusta su vida. Establece un mínimo de vida (1) para poder pasar a la siguiente batalla sin morir.
     jugador.puntos += points;
     jugador.vida = Math.min(jugador.vidaMaxima, Math.max(1, hpPlayer));
