@@ -87,7 +87,23 @@ export function combat(jugador, enemigo) {
     jugador.vida = 0;
   }
 
-  // Muestra el resultado de la batalla en la interfaz.
+
+  const ranking = JSON.parse(localStorage.getItem('ranking') || '{}');
+  const puntos = jugador.puntos;
+  const monedas = jugador.monedas;
+
+  if (ranking[jugador]) { 
+    return;
+  }
+
+  
+  users[jugador.nombre] = {
+    puntos,
+    monedas
+  };
+
+  localStorage.setItem('ranking', JSON.stringify(ranking));
+  
   showWinner(winnerName, points);
 }
 
